@@ -1,3 +1,4 @@
+from NPCActions import RoleActionList
 from Role import Role
 
 
@@ -9,8 +10,12 @@ class NPC:
         self.journal = []
         self.statuses = []
         self.isAlive = True
+        #Flag to indicate that this npc is being killed. If this npc is not saved by the end of the night, then he will die.
         self.isBeingKilled = False
         self.isAtHome = True
+        self.isAllowedToAct = True
+
 
     def __repr__(self):
         return self.name + ": " + str(self.role)
+

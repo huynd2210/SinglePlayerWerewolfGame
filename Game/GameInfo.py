@@ -1,10 +1,11 @@
 from typing import List
 
 from NPC import NPC
+from Player import Player
 
 
 class GameInfo:
-    def __init__(self, player, npcList: List[NPC]):
+    def __init__(self, player: Player, npcList: List[NPC]):
         self.player = player
         self.npcList = npcList
         #Each turn consists of a day and a night
