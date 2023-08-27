@@ -1,4 +1,3 @@
-from NPCActions import RoleActionList
 from Role import Role
 
 

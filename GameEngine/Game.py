@@ -1,20 +1,19 @@
 import random
 
 import PlayerActionList
-import GameConfig
-from Game.NightInfo import NightInfo
-from GameInfo import GameInfo
+import RoleList
+from GameEngine import GameConfig
+from GameEngine.NightInfo import NightInfo
+from GameEngine.GameInfo import GameInfo
 from NPC import NPC
 from NPCActions import RoleActionList
-from Role import Role
-
 
 class Game:
     def __init__(self, player):
         self.gameInfo = self._initGameInfo(player)
         self.nightInfo = self._initNightInfo()
         self.configMap = self._initConfigMap()
-
+        self.initTestGame()
     def _initNightInfo(self):
         return NightInfo()
 
@@ -29,11 +28,25 @@ class Game:
             "doctor": {
                 "actFrequency": GameConfig.doctorActFrequency,
             },
+            "villager": {
+                "actFrequency": GameConfig.villagerActFrequency,
+            },
+            "werewolf": {
+                "actFrequency": GameConfig.werewolfActFrequency,
+            },
+
         }
 
-    def addNPC(self, role, name):
+    def addNPC(self, name, roleName):
+        role = RoleList.roleMap[roleName.lower()]
         self.gameInfo.npcList.append(NPC(role, name))
 
+    def initTestGame(self):
+        self.addNPC("Tim", "Villager")
+        self.addNPC("Tom", "Villager")
+        self.addNPC("Bob", "Villager")
+        self.addNPC("Ben", "Seer")
+        self.addNPC("Bad Guy", "Werewolf")
     def countRoles(self):
         roleCount = {}
         for npc in self.gameInfo.npcList:
@@ -55,8 +68,12 @@ class Game:
 
     # Execute all evil factions to win
     def isPlayerWin(self):
-        return sum(
-            map(lambda npc: npc.role.alignment.lower() == "evil" and not npc.isAlive, self.gameInfo.npcList)) == 0
+        # return sum(
+        #     map(lambda npc: npc.role.alignment.lower() == "evil" and not npc.isAlive, self.gameInfo.npcList)) == 0
+        for npc in self.gameInfo.npcList:
+            if npc.role.alignment.lower() == "evil" and npc.isAlive:
+                return False
+        return True
 
     # change from 0 to other numbers
     def isPlayerLose(self):
@@ -86,11 +103,18 @@ class Game:
             # End day phase
 
     def _nightPhase(self):
+        #First, the npc will act
+        if self.gameInfo.currentNightType.lower() == 'normal':
+            print("Tonight is quiet")
+        elif self.gameInfo.currentNightType.lower() == 'full moon':
+            print("Tonight is full moon")
+
         for npc in self.gameInfo.npcList:
             if npc.isAlive and npc.isAllowedToAct:
                 self.npcNightAction(npc)
-
         self.updateGameInfo()
+        #Then the player will act
+        self.playerNightAction()
 
     def announceNightCasualties(self):
         print(str(len(self.nightInfo.nightCasualties)) + " people died last night.")
@@ -117,11 +141,11 @@ class Game:
         PlayerActionList.executeNPCAction(self.gameInfo, npcToExecute)
 
     def playerNightAction(self):
-        pass
+        self.gameInfo.player.takeNightActionDialogue(self.gameInfo)
 
     def npcNightAction(self, npc):
         targetNpc = self.chooseTargetNpc(npc)
-        RoleActionList.roleActionMap[npc.role.roleName.lower()](npc, targetNpc)
+        RoleActionList.roleActionMap[npc.role.roleName.lower()](self.gameInfo, targetNpc, npc)
 
     # This function controls the NPC's behavior
     def updateGameInfo(self):

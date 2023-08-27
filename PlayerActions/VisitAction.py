@@ -1,12 +1,14 @@
 class VisitAction:
     def visitActionFunction(self, gameInfo, npcName):
-        if npcName not in gameInfo.npcList:
+        npcNames = [npc.name for npc in gameInfo.npcList]
+        if npcName not in npcNames:
             print("NPC not found.")
             return
 
         print("You visited " + npcName + ".")
+        self.resolveVisitAction(gameInfo, npcName)
 
-    def _resolveVisitAction(self, gameInfo, npcName):
+    def resolveVisitAction(self, gameInfo, npcName):
         npcEffect = {}
         # roleName = gameInfo.npcList[npcName].role.roleName
         npcEffect["villager"] = self._resolveVisitingVillager(gameInfo, npcName)

@@ -1,6 +1,6 @@
 from typing import List
 
-from Game.GameInfo import GameInfo
+from GameEngine.GameInfo import GameInfo
 from NPC import NPC
 from Player import Player
 

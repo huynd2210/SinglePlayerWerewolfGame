@@ -3,12 +3,12 @@ from NPC import NPC
 
 # class RoleEffectList:
 
-def seerActionFunction(gameInfo, targetNpcName: str, selfNPC: NPC):
-    if targetNpcName not in gameInfo.npcList:
-        raise Exception(targetNpcName + " not found.")
+def seerActionFunction(gameInfo, targetNPC: NPC, selfNPC: NPC):
+    if targetNPC not in gameInfo.npcList:
+        raise Exception(targetNPC.name + " not found.")
 
     # selfNPC.journal.append((targetNpcName, gameInfo.npcList[targetNpcName].role.roleName))
-    selfNPC.journal.append(targetNpcName + " is a " + gameInfo.npcList[targetNpcName].role.roleName)
+    selfNPC.journal.append(targetNPC.name + " is a " + gameInfo.npcList[gameInfo.npcList.index(targetNPC)].role.roleName)
 
 
 def werewolfActionFunction(gameInfo, targetNpcName: str, selfNPC: NPC):
@@ -31,8 +31,13 @@ def doctorActionFunction(gameInfo, targetNpcName: str, selfNPC: NPC):
     else:
         selfNPC.journal.append("visited " + targetNpcName + " on night" + str(gameInfo.currentTurn))
 
+#Villagers do nothing
+def villagerActionFunction(gameInfo, targetNpcName: str, selfNPC: NPC):
+    pass
+
 roleActionMap = {
-    "Seer": seerActionFunction,
-    "Werewolf": werewolfActionFunction,
-    "Doctor": doctorActionFunction
+    "seer": seerActionFunction,
+    "werewolf": werewolfActionFunction,
+    "doctor": doctorActionFunction,
+    "villager": villagerActionFunction,
 }
