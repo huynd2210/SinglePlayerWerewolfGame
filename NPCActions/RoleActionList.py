@@ -10,7 +10,6 @@ def seerActionFunction(gameInfo, targetNPC: NPC, selfNPC: NPC):
     # selfNPC.journal.append((targetNpcName, gameInfo.npcList[targetNpcName].role.roleName))
     selfNPC.journal.append(targetNPC.name + " is a " + gameInfo.npcList[gameInfo.npcList.index(targetNPC)].role.roleName)
 
-
 def werewolfActionFunction(gameInfo, targetNpcName: str, selfNPC: NPC):
     if targetNpcName not in gameInfo.npcList:
         raise Exception(targetNpcName + " not found.")

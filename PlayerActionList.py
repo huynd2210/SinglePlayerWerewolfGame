@@ -1,6 +1,4 @@
-from PlayerActions.ExecuteAction import ExecuteAction
-from PlayerActions.VisitAction import VisitAction
-
+from PlayerActions import VisitAction, ExecuteAction
 
 # class PlayerActionList:
 visitAction = VisitAction.visitActionFunction

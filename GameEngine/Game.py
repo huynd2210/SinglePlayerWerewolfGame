@@ -65,6 +65,7 @@ class Game:
         for role, count in self.countRoles().items():
             print(str(count) + " " + role + "(s)")
         print("Good luck and execute the will of the Emperor!")
+        print("================================================")
 
     # Execute all evil factions to win
     def isPlayerWin(self):
@@ -127,18 +128,24 @@ class Game:
     def playerDayAction(self):
         # execute NPC
         print("Who do you want to execute?")
-        for npc in self.gameInfo.npcList:
+        aliveNpc = list(filter(lambda npc: npc.isAlive, self.gameInfo.npcList))
+        for npc in aliveNpc:
             print(npc.name)
         npcToExecute = input()
 
-        while npcToExecute not in self.gameInfo.npcList:
+        aliveNpcNameList = [npc.name for npc in aliveNpc]
+
+        while npcToExecute not in aliveNpcNameList:
+            if npcToExecute == "None":
+                break
             print("Invalid input, try again")
             print("Who do you want to execute?")
-            for npc in self.gameInfo.npcList:
+            for npc in aliveNpc:
                 print(npc.name)
             npcToExecute = input()
 
-        PlayerActionList.executeNPCAction(self.gameInfo, npcToExecute)
+        if npcToExecute != "None":
+            PlayerActionList.executeNPCAction(self.gameInfo, npcToExecute)
 
     def playerNightAction(self):
         self.gameInfo.player.takeNightActionDialogue(self.gameInfo)

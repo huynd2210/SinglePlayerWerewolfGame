@@ -16,7 +16,7 @@ class Player:
         possibleNightActions = [actions for actions in self.actions if actions.isNightAction]
         possibleNightActionsNames = [actions.name for actions in possibleNightActions]
         for action in possibleNightActions:
-            print(action.name)
+            print("-- " + action.name)
         actionToTake = input()
         while actionToTake not in possibleNightActionsNames:
             print("Invalid input, try again")
@@ -39,4 +39,4 @@ class Player:
                     for npc in gameInfo.npcList:
                         print(npc.name)
                     targetNPCName = input()
-                action.performAction(action, gameInfo, targetNPCName)
+                action.performAction(gameInfo, targetNPCName)

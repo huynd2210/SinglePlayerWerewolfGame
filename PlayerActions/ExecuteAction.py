@@ -1,7 +1,7 @@
-class ExecuteAction:
-    def executeNPCActionFunction(self, gameInfo, npcName):
-        if npcName not in gameInfo.npcList:
-            raise Exception("NPC " + npcName + " not found.")
+def executeNPCActionFunction(gameInfo, npcName):
+    npcNameList = [npc.name for npc in gameInfo.npcList]
+    if npcName not in npcNameList:
+        raise Exception("NPC " + npcName + " not found.")
 
-        gameInfo.npcList[npcName].isAlive = False
-        print(npcName + " was executed.")
+    gameInfo.npcList[npcNameList.index(npcName)].isAlive = False
+    print(npcName + " was executed.")
