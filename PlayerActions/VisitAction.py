@@ -1,12 +1,11 @@
 def visitActionFunction(gameInfo, npcName):
-    npcNames = [npc.name for npc in gameInfo.npcList]
-    if npcName not in npcNames:
+    aliveNpcNames = [npc.name for npc in gameInfo.npcList if npc.isAlive]
+    if npcName not in aliveNpcNames:
         print("NPC not found.")
         return
 
     print("You visited " + npcName + ".")
     resolveVisitAction(gameInfo, npcName)
-
 
 def resolveVisitAction(gameInfo, npcName):
     npcEffect = {}
@@ -24,7 +23,7 @@ def resolveVisitAction(gameInfo, npcName):
     print(npcEffect[npcRole](gameInfo, npcName))
 
 def _resolveVisitingWerewolf(gameInfo, npcName):
-    if gameInfo.currentNightType == "Full Moon":
+    if gameInfo.currentNightType == "full moon":
         return npcName + " is not at home. There are traces of wolf fur on the floor. You conclude that he is a werewolf."
     else:
         return "You think that " + npcName + " is a villager."

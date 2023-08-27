@@ -168,4 +168,5 @@ class Game:
 
     # This function allows the NPC to choose a target based on some criteria (todo)
     def chooseTargetNpc(self, originNpc):
-        return random.choice(list(filter(lambda npc: npc != originNpc, self.gameInfo.npcList)))
+        aliveNpc = list(filter(lambda npc: npc.isAlive, self.gameInfo.npcList))
+        return random.choice(list(filter(lambda npc: npc != originNpc, aliveNpc)))

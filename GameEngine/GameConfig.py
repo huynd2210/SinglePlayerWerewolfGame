@@ -3,4 +3,4 @@ seerActFrequency = 1
 doctorActFrequency = 1
 villagerActFrequency = 1
 werewolfActFrequency = 1
-fullMoonFrequency = 3
+fullMoonFrequency = 1

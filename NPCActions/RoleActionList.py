@@ -15,8 +15,9 @@ def werewolfActionFunction(gameInfo, targetNpcName: str, selfNPC: NPC):
         raise Exception(targetNpcName + " not found.")
 
     #if not full moon, werewolf does nothing
-    if gameInfo.currentNightType == "Full Moon":
-        gameInfo.npcList[targetNpcName].isBeingKilled = True
+    if gameInfo.currentNightType == "full moon":
+
+        gameInfo.npcList[].isBeingKilled = True
 
 
 # The doctor can save a villager even if the villager is targeted by multiple hostiles
