@@ -74,13 +74,14 @@ class Game:
         for npc in self.gameInfo.npcList:
             if npc.role.alignment.lower() == "evil" and npc.isAlive:
                 return False
-        print("Player Win")
+        print("All evil faction are dead. Player Win")
         return True
 
     def isPlayerLose(self):
         for npc in self.gameInfo.npcList:
             if npc.role.alignment.lower() == "good" and npc.isAlive:
                 return False
+        print("All good people are dead. Player Lose")
         return True
 
         # return sum(map(lambda npc: npc.role.alignment.lower() == "good" and npc.isAlive, self.gameInfo.npcList)) == 0
