@@ -74,14 +74,19 @@ class Game:
         for npc in self.gameInfo.npcList:
             if npc.role.alignment.lower() == "evil" and npc.isAlive:
                 return False
+        print("Player Win")
         return True
 
-    # change from 0 to other numbers
     def isPlayerLose(self):
-        return sum(map(lambda npc: npc.role.alignment.lower() == "good" and npc.isAlive, self.gameInfo.npcList)) == 0
+        for npc in self.gameInfo.npcList:
+            if npc.role.alignment.lower() == "good" and npc.isAlive:
+                return False
+        return True
+
+        # return sum(map(lambda npc: npc.role.alignment.lower() == "good" and npc.isAlive, self.gameInfo.npcList)) == 0
 
     def isGameOver(self):
-        return self.isPlayerWin() or self.isPlayerLose()
+         return self.isPlayerWin() or self.isPlayerLose()
 
     def startGame(self):
         villageName = "Doomed Village"
@@ -89,6 +94,10 @@ class Game:
             self.gameInfo.currentTurn += 1
             print("Day " + str(self.gameInfo.currentTurn))
             self._dayPhase(villageName)
+
+            if self.isGameOver():
+                break
+
             print("Night " + str(self.gameInfo.currentTurn))
             self._nightPhase()
 
@@ -113,9 +122,10 @@ class Game:
         for npc in self.gameInfo.npcList:
             if npc.isAlive and npc.isAllowedToAct:
                 self.npcNightAction(npc)
-        self.updateGameInfo()
+
         #Then the player will act
         self.playerNightAction()
+        self.updateGameInfo()
 
     def announceNightCasualties(self):
         print(str(len(self.nightInfo.nightCasualties)) + " people died last night.")
@@ -166,6 +176,7 @@ class Game:
         if self.gameInfo.currentNightType.lower() == "normal" and self.gameInfo.currentTurn % GameConfig.fullMoonFrequency == 0:
             self.gameInfo.currentNightType = "full moon"
 
+        self.nightInfo.resolveNightConclusion(self.gameInfo)
     # This function allows the NPC to choose a target based on some criteria (todo)
     def chooseTargetNpc(self, originNpc):
         aliveNpc = list(filter(lambda npc: npc.isAlive, self.gameInfo.npcList))
