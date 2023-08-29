@@ -8,12 +8,14 @@ from GameEngine.GameInfo import GameInfo
 from NPC import NPC
 from NPCActions import RoleActionList
 
+
 class Game:
     def __init__(self, player):
         self.gameInfo = self._initGameInfo(player)
         self.nightInfo = self._initNightInfo()
         self.configMap = self._initConfigMap()
         self.initTestGame()
+
     def _initNightInfo(self):
         return NightInfo()
 
@@ -46,7 +48,8 @@ class Game:
         self.addNPC("Tom", "Villager")
         self.addNPC("Bob", "Villager")
         self.addNPC("Ben", "Seer")
-        self.addNPC("Bad Guy", "Werewolf")
+        self.addNPC("Chad", "Werewolf")
+
     def countRoles(self):
         roleCount = {}
         for npc in self.gameInfo.npcList:
@@ -87,7 +90,7 @@ class Game:
         # return sum(map(lambda npc: npc.role.alignment.lower() == "good" and npc.isAlive, self.gameInfo.npcList)) == 0
 
     def isGameOver(self):
-         return self.isPlayerWin() or self.isPlayerLose()
+        return self.isPlayerWin() or self.isPlayerLose()
 
     def startGame(self):
         villageName = "Doomed Village"
@@ -114,7 +117,7 @@ class Game:
             # End day phase
 
     def _nightPhase(self):
-        #First, the npc will act
+        # First, the npc will act
         if self.gameInfo.currentNightType.lower() == 'normal':
             print("Tonight is quiet")
         elif self.gameInfo.currentNightType.lower() == 'full moon':
@@ -124,39 +127,41 @@ class Game:
             if npc.isAlive and npc.isAllowedToAct:
                 self.npcNightAction(npc)
 
-        #Then the player will act
+        # Then the player will act
         self.playerNightAction()
         self.updateGameInfo()
 
     def announceNightCasualties(self):
         print(str(len(self.nightInfo.nightCasualties)) + " people died last night.")
-        print("The dead are: ")
+        if len(self.nightInfo.nightCasualties) > 0:
+            print("The dead are: ")
         for npc in self.nightInfo.nightCasualties:
             print(npc.name)
         self.nightInfo.reset()
 
     # todo: refactor this for more actions in the future
     def playerDayAction(self):
-        # execute NPC
-        print("Who do you want to execute?")
-        aliveNpc = list(filter(lambda npc: npc.isAlive, self.gameInfo.npcList))
-        for npc in aliveNpc:
-            print(npc.name)
-        npcToExecute = input()
-
-        aliveNpcNameList = [npc.name for npc in aliveNpc]
-
-        while npcToExecute not in aliveNpcNameList:
-            if npcToExecute == "None":
-                break
-            print("Invalid input, try again")
-            print("Who do you want to execute?")
-            for npc in aliveNpc:
-                print(npc.name)
-            npcToExecute = input()
-
-        if npcToExecute != "None":
-            PlayerActionList.executeNPCAction(self.gameInfo, npcToExecute)
+        self.gameInfo.player.takeDayActionDialogue(self.gameInfo)
+    # execute NPC
+    # print("Who do you want to execute?")
+    # aliveNpc = list(filter(lambda npc: npc.isAlive, self.gameInfo.npcList))
+    # for npc in aliveNpc:
+    #     print(npc.name)
+    # npcToExecute = input()
+    #
+    # aliveNpcNameList = [npc.name for npc in aliveNpc]
+    #
+    # while npcToExecute not in aliveNpcNameList:
+    #     if npcToExecute == "None":
+    #         break
+    #     print("Invalid input, try again")
+    #     print("Who do you want to execute?")
+    #     for npc in aliveNpc:
+    #         print(npc.name)
+    #     npcToExecute = input()
+    #
+    # if npcToExecute != "None":
+    #     PlayerActionList.executeNPCAction(self.gameInfo, npcToExecute)
 
     def playerNightAction(self):
         self.gameInfo.player.takeNightActionDialogue(self.gameInfo)
@@ -178,6 +183,7 @@ class Game:
             self.gameInfo.currentNightType = "full moon"
 
         self.nightInfo.resolveNightConclusion(self.gameInfo)
+
     # This function allows the NPC to choose a target based on some criteria (todo)
     def chooseTargetNpc(self, originNpc):
         aliveNpc = list(filter(lambda npc: npc.isAlive, self.gameInfo.npcList))
