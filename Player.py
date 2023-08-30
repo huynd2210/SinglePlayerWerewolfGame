@@ -27,39 +27,9 @@ class Player:
                 print(action.name)
             actionToTake = input()
 
-            # npcNames = [npc.name for npc in gameInfo.npcList]
-        aliveNpcNames = [npc.name for npc in gameInfo.npcList if npc.isAlive]
         for action in possibleDayActions:
             if action.name == actionToTake:
-                print("Who do you want to " + action.name + "?")
-                self.printAliveNpcNames(aliveNpcNames)
-                targetNPCName = input()
-                while targetNPCName not in aliveNpcNames:
-                    print("Invalid input, try again")
-                    print("Who do you want to " + action.name + "?")
-                    self.printAliveNpcNames(aliveNpcNames)
-                    targetNPCName = input()
-                action.performAction(gameInfo, targetNPCName)
-
-        # print("Who do you want to execute?")
-        # aliveNpc = list(filter(lambda npc: npc.isAlive, self.gameInfo.npcList))
-        # for npc in aliveNpc:
-        #     print(npc.name)
-        # npcToExecute = input()
-        #
-        # aliveNpcNameList = [npc.name for npc in aliveNpc]
-        #
-        # while npcToExecute not in aliveNpcNameList:
-        #     if npcToExecute == "None":
-        #         break
-        #     print("Invalid input, try again")
-        #     print("Who do you want to execute?")
-        #     for npc in aliveNpc:
-        #         print(npc.name)
-        #     npcToExecute = input()
-        #
-        # if npcToExecute != "None":
-        #     PlayerActionList.executeNPCAction(self.gameInfo, npcToExecute)
+                action.performAction(gameInfo)
 
     def takeNightActionDialogue(self, gameInfo):
         print("What do you want to do tonight? Possible actions are: ")
@@ -75,21 +45,24 @@ class Player:
                 print(action.name)
             actionToTake = input()
 
-
-        # npcNames = [npc.name for npc in gameInfo.npcList]
-        aliveNpcNames = [npc.name for npc in gameInfo.npcList if npc.isAlive]
         for action in possibleNightActions:
             if action.name == actionToTake:
-                print("Who do you want to " + action.name + "?")
-                self.printAliveNpcNames(aliveNpcNames)
-                targetNPCName = input()
+                action.performAction(gameInfo)
 
-                while targetNPCName not in aliveNpcNames:
-                    print("Invalid input, try again")
-                    print("Who do you want to " + action.name + "?")
-                    self.printAliveNpcNames(aliveNpcNames)
-                    targetNPCName = input()
-                action.performAction(gameInfo, targetNPCName)
+        # # npcNames = [npc.name for npc in gameInfo.npcList]
+        # aliveNpcNames = [npc.name for npc in gameInfo.npcList if npc.isAlive]
+        # for action in possibleNightActions:
+        #     if action.name == actionToTake:
+        #         print("Who do you want to " + action.name + "?")
+        #         self.printAliveNpcNames(aliveNpcNames)
+        #         targetNPCName = input()
+        #
+        #         while targetNPCName not in aliveNpcNames:
+        #             print("Invalid input, try again")
+        #             print("Who do you want to " + action.name + "?")
+        #             self.printAliveNpcNames(aliveNpcNames)
+        #             targetNPCName = input()
+        #         action.performAction(gameInfo, targetNPCName)
 
     def printAliveNpcNames(self, aliveNpcNames):
         for npcName in aliveNpcNames:

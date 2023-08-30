@@ -142,26 +142,6 @@ class Game:
     # todo: refactor this for more actions in the future
     def playerDayAction(self):
         self.gameInfo.player.takeDayActionDialogue(self.gameInfo)
-    # execute NPC
-    # print("Who do you want to execute?")
-    # aliveNpc = list(filter(lambda npc: npc.isAlive, self.gameInfo.npcList))
-    # for npc in aliveNpc:
-    #     print(npc.name)
-    # npcToExecute = input()
-    #
-    # aliveNpcNameList = [npc.name for npc in aliveNpc]
-    #
-    # while npcToExecute not in aliveNpcNameList:
-    #     if npcToExecute == "None":
-    #         break
-    #     print("Invalid input, try again")
-    #     print("Who do you want to execute?")
-    #     for npc in aliveNpc:
-    #         print(npc.name)
-    #     npcToExecute = input()
-    #
-    # if npcToExecute != "None":
-    #     PlayerActionList.executeNPCAction(self.gameInfo, npcToExecute)
 
     def playerNightAction(self):
         self.gameInfo.player.takeNightActionDialogue(self.gameInfo)

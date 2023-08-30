@@ -1,13 +1,37 @@
-def roleInvestigationActionFunction(gameInfo, npcName):
-    deadNpcNames = [npc.name for npc in gameInfo.npcList if not npc.isAlive]
-    if npcName not in deadNpcNames:
+def _possibleTargetNames(gameInfo):
+    return [npc.name for npc in gameInfo.npcList if not npc.isAlive]
+
+
+def roleInvestigationActionWrapper(gameInfo):
+    print("Who do you want to investigate?")
+    possibleTargetsNames = _possibleTargetNames(gameInfo)
+    _printTargetNames(possibleTargetsNames)
+    targetNameToInvestigate = input()
+
+    if targetNameToInvestigate not in possibleTargetsNames:
+        print("Invalid input, try again")
+        print("Who do you want to investigate?")
+        _printTargetNames(possibleTargetsNames)
+        targetNameToInvestigate = input()
+    _roleInvestigationActionFunction(gameInfo, targetNameToInvestigate)
+
+def _printTargetNames(possibleTargetsNames):
+    for targetNames in possibleTargetsNames:
+        print(targetNames)
+
+
+def _roleInvestigationActionFunction(gameInfo, npcName):
+    possibleNpcTargetNames = _possibleTargetNames(gameInfo)
+
+    if npcName not in possibleNpcTargetNames:
         print("NPC not found.")
         return
 
     print("You investigated " + npcName + ".")
-    resolveRoleInvestigationAction(gameInfo, npcName)
+    _resolveRoleInvestigationAction(gameInfo, npcName)
 
-def resolveRoleInvestigationAction(gameInfo, npcName):
+
+def _resolveRoleInvestigationAction(gameInfo, npcName):
     npcNameList = [npc.name for npc in gameInfo.npcList]
     npcRole = gameInfo.npcList[npcNameList.index(npcName)].role.roleName
     print("By investigating, you think that " + npcName + " is a " + npcRole + ".")

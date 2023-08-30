@@ -1,13 +1,28 @@
-def visitActionFunction(gameInfo, npcName):
+
+def visitActionWrapper(gameInfo):
+    print("Who do you want to visit")
+    possibleTargetNames = _possibleTargetNames(gameInfo)
+
+    _printTargetNames(possibleTargetNames)
+    targetNameToVisit = input()
+
+    if targetNameToVisit not in possibleTargetNames:
+        print("Invalid input, try again")
+        print("Who do you want to visit?")
+        _printTargetNames(possibleTargetNames)
+        targetNameToVisit = input()
+    _visitActionFunction(gameInfo, targetNameToVisit)
+
+def _visitActionFunction(gameInfo, npcName):
     aliveNpcNames = [npc.name for npc in gameInfo.npcList if npc.isAlive]
     if npcName not in aliveNpcNames:
         print("NPC not found.")
         return
 
     print("You visited " + npcName + ".")
-    resolveVisitAction(gameInfo, npcName)
+    _resolveVisitAction(gameInfo, npcName)
 
-def resolveVisitAction(gameInfo, npcName):
+def _resolveVisitAction(gameInfo, npcName):
     npcEffect = {}
     # roleName = gameInfo.npcList[npcName].role.roleName
     npcEffect["villager"] = _resolveVisitingVillager
@@ -46,3 +61,10 @@ def _resolveVisitingDoctor(gameInfo, npcName):
     npcNameList = [npc.name for npc in gameInfo.npcList]
     if gameInfo.npcList[npcNameList.index(npcName)].isAtHome:
         return npcName + " revealed that he is a doctor and he " + str(gameInfo.npcList[npcNameList.index(npcName)].journal)
+
+def _printTargetNames(possibleTargetNames):
+    for targetNames in possibleTargetNames:
+        print(targetNames)
+
+def _possibleTargetNames(gameInfo):
+    return [npc.name for npc in gameInfo.npcList if npc.isAlive]
