@@ -8,11 +8,18 @@ def executeNPCActionWrapper(gameInfo):
     _printTargetNames(possibleTargetNames)
     targetNameToExecute = input()
 
+    if targetNameToExecute == "None":
+        return
+
     if targetNameToExecute not in possibleTargetNames:
         print("Invalid input, try again")
-        print("Who do you want to investigate?")
+        print("Who do you want to execute?")
         _printTargetNames(possibleTargetNames)
         targetNameToExecute = input()
+        if targetNameToExecute == "None":
+            return
+
+
     _executeNPCActionFunction(gameInfo, targetNameToExecute)
 def _executeNPCActionFunction(gameInfo, npcName):
     npcNameList = [npc.name for npc in gameInfo.npcList]

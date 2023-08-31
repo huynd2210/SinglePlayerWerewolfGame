@@ -19,14 +19,20 @@ class Player:
         possibleDayActions = [actions for actions in self.actions if not actions.isNightAction]
         possibleDayActionsNames = [actions.name for actions in possibleDayActions]
         for action in possibleDayActions:
-            print("-- ", action.name)
+            print("--", action.name)
+
+        print("-- nothing")
         actionToTake = input()
+        if actionToTake.lower() == "nothing":
+            return
         while actionToTake not in possibleDayActionsNames:
             print("Invalid input, try again")
             print("What do you want to do today?")
             for action in possibleDayActions:
-                print(action.name)
+                print("--", action.name)
             actionToTake = input()
+            if actionToTake.lower() == "nothing":
+                return
 
         for action in possibleDayActions:
             if action.name == actionToTake:
@@ -37,14 +43,22 @@ class Player:
         possibleNightActions = [actions for actions in self.actions if actions.isNightAction]
         possibleNightActionsNames = [actions.name for actions in possibleNightActions]
         for action in possibleNightActions:
-            print("-- " + action.name)
+            print("--", action.name)
+
+        #Do nothing
+        print("-- nothing")
         actionToTake = input()
+        if actionToTake.lower() == "nothing":
+            return
+
         while actionToTake not in possibleNightActionsNames:
             print("Invalid input, try again")
             print("What do you want to do tonight?")
             for action in possibleNightActions:
-                print(action.name)
+                print("--", action.name)
             actionToTake = input()
+            if actionToTake.lower() == "nothing":
+                return
 
         for action in possibleNightActions:
             if action.name == actionToTake:

@@ -52,7 +52,7 @@ class Game:
 
     def setupGameWithConfig(self, setupNPCCounts):
         NPCNames = ["Tim", "Tom", "Tip", "Bob", "Ben", "David", "Chad", "Chen", "Michael",
-                    "James", "John", "David", "Robert", "William", "Christ", "Joe", "Dan", "Richard", "Thomas", "Jen"]
+                    "James", "John", "Deema", "Robert", "William", "Christ", "Joe", "Dan", "Richard", "Thomas", "Jen"]
         for role, count in setupNPCCounts.items():
             for i in range(count):
                 name = random.choice(NPCNames)
