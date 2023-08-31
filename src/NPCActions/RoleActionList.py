@@ -33,12 +33,32 @@ def doctorActionFunction(gameInfo, targetNpc: NPC, selfNPC: NPC):
         selfNPC.journal.append("visited " + targetNpc.name + " on night " + str(gameInfo.currentTurn))
 
 #Villagers do nothing
-def villagerActionFunction(gameInfo, targetNpcName: str, selfNPC: NPC):
+def villagerActionFunction(gameInfo, targetNPC: NPC, selfNPC: NPC):
     pass
+
+def trapperActionFunction(gameInfo, targetNPC: NPC, selfNPC: NPC):
+    pass
+
+def deceiverActionFunction(gameInfo, targetNPC: NPC, selfNPC: NPC):
+    pass
+
+def cleanerActionFunction(gameInfo, targetNpc: NPC, selfNPC: NPC):
+    if targetNpc not in gameInfo.npcList:
+        raise Exception(targetNpc.name + " not found.")
+
+    if targetNpc.isAlive:
+        raise Exception("Cannot cleanup " + targetNpc.name + " as they are still alive")
+
+    targetNpc.role.roleName = "Cleaned"
+    targetNpc.role.alignment = "Cleaned"
+    targetNpc.role.faction = "Cleaned"
 
 roleActionMap = {
     "seer": seerActionFunction,
     "werewolf": werewolfActionFunction,
     "doctor": doctorActionFunction,
     "villager": villagerActionFunction,
+    "trapper": trapperActionFunction,
+    "deceiver": deceiverActionFunction,
+    "cleaner": cleanerActionFunction,
 }

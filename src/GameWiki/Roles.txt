@@ -1,0 +1,42 @@
+Good Role:
+Villagers:
+    - Villagers are ordinary citizen of the realm, an integral part of the village's tapestry. They work on the farm in the day, and sleep in the night.
+
+Doctor:
+    - Doctors are trusted figures in the village, armed with medical knowledge and a caring touch.
+     Their role revolves around mending injuries and nursing the sick back to health.
+     Through herbs, poultices, and experience, they ensure that the village remains strong even in the face of adversity.
+
+     Each night, they leave their home to check on their fellow villagers, should the person in grave danger, the doctor will heal even the most serious injuries.
+
+Seer:
+    - Seers possess a rare gift: the ability to read auras and sense intentions.
+     Their insights aren't derived from spells but from a deep understanding of human nature.
+      By observing the subtle shifts in energy around individuals, they become skilled at identifying allies and foes.
+
+      Each night, they can attempt to find out the roles of another villager at the comfort of their home.
+
+
+
+Evil Role:
+Werewolves:
+    - Among the villagers, the Werewolf prowls in secrecy.
+     By day, they appear as an ordinary member of the community, but by night, their true nature emerges.
+     With a primal instinct for slaughter, they stalk and hunt anyone who unfortunate enough to be their target.
+
+     Werewolves act and behave as normal villagers until a full moon night, which they will transform into their true form and will kill a random villager.
+     (Note: Each werewolf can kill 1 villagers, so 3 werewolves can kill 3 villagers)
+
+Cleaner:
+    - Evil men who work for the forces of shadow. They clean up the scene of the crime, hiding trails and covering up for their brethens.
+
+    Cleaners remove the roles of the dead, thus preventing the player's role investigation ability.
+
+Deceiver:
+    -
+
+Trapper:
+    - Skilled in traps and snares, they are employed by the forces of evil to hinder any attempts of investigation. While non-lethal, their traps
+    are a constant nuisance. Should one get caught, removing the traps and freeing oneself is a daunting task.
+
+    Each night, a trapper setup traps at a random villagers house. If the player visits the trapped house, they will be ensnared, thus losing all night to escape.
