@@ -92,8 +92,6 @@ class Game:
 
     # Execute all evil factions to win
     def isPlayerWin(self):
-        # return sum(
-        #     map(lambda npc: npc.role.alignment.lower() == "evil" and not npc.isAlive, self.gameInfo.npcList)) == 0
         for npc in self.gameInfo.npcList:
             if npc.role.alignment.lower() == "evil" and npc.isAlive:
                 return False
