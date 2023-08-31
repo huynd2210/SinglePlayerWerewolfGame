@@ -1,20 +1,27 @@
 import random
 
-from main import RoleList
-from main.GameEngine import GameConfig
-from main.GameEngine.NightInfo import NightInfo
-from main.GameEngine.GameInfo import GameInfo
-from main.NPC import NPC
-from main.NPCActions import RoleActionList
+from src import RoleList
+from src.GameEngine import GameConfig
+from src.GameEngine.NightInfo import NightInfo
+from src.GameEngine.GameInfo import GameInfo
+from src.NPC import NPC
+from src.NPCActions import RoleActionList
 
 
 class Game:
-    def __init__(self, player, isTestGame=True):
+    def __init__(self, player, config=None, isTestGame=False):
         self.gameInfo = self._initGameInfo(player)
         self.nightInfo = self._initNightInfo()
         self.configMap = self._initConfigMap()
-        if isTestGame:
+
+        if isTestGame == True:
+            #If test game is true, then dont setup anything
+            return
+
+        if config == None:
             self.initTestGame()
+        else:
+            self.setupGameWithConfig(config)
 
     def _initNightInfo(self):
         return NightInfo()
@@ -43,6 +50,18 @@ class Game:
         role = RoleList.roleMap[roleName.lower()]
         self.gameInfo.npcList.append(NPC(role, name))
 
+    def setupGameWithConfig(self, setupNPCCounts):
+        NPCNames = ["Tim", "Tom", "Tip", "Bob", "Ben", "David", "Chad", "Chen", "Michael",
+                    "James", "John", "David", "Robert", "William", "Christ", "Joe", "Dan", "Richard", "Thomas", "Jen"]
+        for role, count in setupNPCCounts.items():
+            for i in range(count):
+                name = random.choice(NPCNames)
+                NPCNames.remove(name)
+                self.addNPC(name, role)
+
+    def setupGameRandom(self):
+
+        pass
 
     def initTestGame(self):
         self.addNPC("Tim", "Villager")
@@ -87,8 +106,6 @@ class Game:
                 return False
         print("All good people are dead. Player Lose")
         return True
-
-        # return sum(map(lambda npc: npc.role.alignment.lower() == "good" and npc.isAlive, self.gameInfo.npcList)) == 0
 
     def isGameOver(self):
         return self.isPlayerWin() or self.isPlayerLose()
@@ -140,7 +157,6 @@ class Game:
             print(npc.name)
         self.nightInfo.reset()
 
-    # todo: refactor this for more actions in the future
     def playerDayAction(self):
         self.gameInfo.player.takeDayActionDialogue(self.gameInfo)
 

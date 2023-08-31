@@ -1,6 +1,6 @@
-# from main import PlayerActionList
-from main import PlayerActionList
-from main.PlayerAction import PlayerAction
+# from src import PlayerActionList
+from src import PlayerActionList
+from src.PlayerAction import PlayerAction
 
 
 class Player:

@@ -1,14 +1,14 @@
 import pytest
 
-from main import RoleList
-from main.GameEngine.Game import Game
-from main.NPCActions import RoleActionList
-from main.Player import Player
+from src import RoleList
+from src.GameEngine.Game import Game
+from src.NPCActions import RoleActionList
+from src.Player import Player
 
 
 def initSampleGame():
     player = Player("Player")
-    game = Game(player, isTestGame=False)
+    game = Game(player, isTestGame=True)
     return game
 def testSeerActionOnVillager():
     game = initSampleGame()
@@ -42,3 +42,4 @@ def testDoctorSaving():
     assert villager.isBeingKilled == True
     RoleActionList.roleActionMap[doctor.role.roleName.lower()](game.gameInfo, villager, doctor)
     assert villager.isBeingKilled == False
+    assert doctor.journal[0] == "visited villagerNPC on night 0 and saved his life"

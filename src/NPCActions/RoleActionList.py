@@ -1,4 +1,4 @@
-from main.NPC import NPC
+from src.NPC import NPC
 
 
 # class RoleEffectList:
@@ -27,10 +27,10 @@ def doctorActionFunction(gameInfo, targetNpc: NPC, selfNPC: NPC):
 
     if gameInfo.npcList[gameInfo.npcList.index(targetNpc)].isBeingKilled == True:
         selfNPC.journal.append(
-            "visited " + targetNpc.name + " on night" + str(gameInfo.currentTurn) + " and saved his life.")
+            "visited " + targetNpc.name + " on night " + str(gameInfo.currentTurn) + " and saved his life")
         gameInfo.npcList[gameInfo.npcList.index(targetNpc)].isBeingKilled = False
     else:
-        selfNPC.journal.append("visited " + targetNpc.name + " on night" + str(gameInfo.currentTurn))
+        selfNPC.journal.append("visited " + targetNpc.name + " on night " + str(gameInfo.currentTurn))
 
 #Villagers do nothing
 def villagerActionFunction(gameInfo, targetNpcName: str, selfNPC: NPC):

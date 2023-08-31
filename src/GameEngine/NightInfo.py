@@ -1,4 +1,4 @@
-from main.GameEngine.GameInfo import GameInfo
+from src.GameEngine.GameInfo import GameInfo
 
 
 class NightInfo:

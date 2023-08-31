@@ -1,4 +1,4 @@
-from main.PlayerActions import VisitAction, ExecuteAction, RoleInvestigationAction
+from src.PlayerActions import VisitAction, ExecuteAction, RoleInvestigationAction
 
 visitAction = VisitAction.visitActionWrapper
 executeNPCAction = ExecuteAction.executeNPCActionWrapper

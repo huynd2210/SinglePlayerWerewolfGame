@@ -1,4 +1,4 @@
-from main.Role import Role
+from src.Role import Role
 
 
 class NPC:
