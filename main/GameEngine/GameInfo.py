@@ -1,7 +1,7 @@
 from typing import List
 
-from NPC import NPC
-from Player import Player
+from main.NPC import NPC
+from main.Player import Player
 
 
 class GameInfo:

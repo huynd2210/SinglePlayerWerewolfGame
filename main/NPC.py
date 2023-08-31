@@ -1,4 +1,4 @@
-from Role import Role
+from main.Role import Role
 
 
 class NPC:
@@ -13,7 +13,6 @@ class NPC:
         self.isBeingKilled = False
         self.isAtHome = True
         self.isAllowedToAct = True
-
 
     def __repr__(self):
         return self.name + ": " + str(self.role)

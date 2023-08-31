@@ -1,8 +1,4 @@
-from typing import List
-
-from GameEngine.GameInfo import GameInfo
-from NPC import NPC
-from Player import Player
+from main.GameEngine.GameInfo import GameInfo
 
 
 class NightInfo:

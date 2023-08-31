@@ -1,5 +1,6 @@
-import PlayerActionList
-from PlayerAction import PlayerAction
+# from main import PlayerActionList
+from main import PlayerActionList
+from main.PlayerAction import PlayerAction
 
 
 class Player:
@@ -49,20 +50,6 @@ class Player:
             if action.name == actionToTake:
                 action.performAction(gameInfo)
 
-        # # npcNames = [npc.name for npc in gameInfo.npcList]
-        # aliveNpcNames = [npc.name for npc in gameInfo.npcList if npc.isAlive]
-        # for action in possibleNightActions:
-        #     if action.name == actionToTake:
-        #         print("Who do you want to " + action.name + "?")
-        #         self.printAliveNpcNames(aliveNpcNames)
-        #         targetNPCName = input()
-        #
-        #         while targetNPCName not in aliveNpcNames:
-        #             print("Invalid input, try again")
-        #             print("Who do you want to " + action.name + "?")
-        #             self.printAliveNpcNames(aliveNpcNames)
-        #             targetNPCName = input()
-        #         action.performAction(gameInfo, targetNPCName)
 
     def printAliveNpcNames(self, aliveNpcNames):
         for npcName in aliveNpcNames:

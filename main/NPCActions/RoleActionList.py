@@ -1,4 +1,4 @@
-from NPC import NPC
+from main.NPC import NPC
 
 
 # class RoleEffectList:
@@ -21,15 +21,16 @@ def werewolfActionFunction(gameInfo, targetNpc: NPC, selfNPC: NPC):
         gameInfo.npcList[gameInfo.npcList.index(targetNpc)].isBeingKilled = True
 
 # The doctor can save a villager even if the villager is targeted by multiple hostiles
-def doctorActionFunction(gameInfo, targetNpcName: str, selfNPC: NPC):
-    if targetNpcName not in gameInfo.npcList:
-        raise Exception(targetNpcName + " not found.")
+def doctorActionFunction(gameInfo, targetNpc: NPC, selfNPC: NPC):
+    if targetNpc not in gameInfo.npcList:
+        raise Exception(targetNpc.name + " not found.")
 
-    if gameInfo.npcList[targetNpcName].isBeingKilled == True:
+    if gameInfo.npcList[gameInfo.npcList.index(targetNpc)].isBeingKilled == True:
         selfNPC.journal.append(
-            "visited " + targetNpcName + " on night" + str(gameInfo.currentTurn) + " and saved his life.")
+            "visited " + targetNpc.name + " on night" + str(gameInfo.currentTurn) + " and saved his life.")
+        gameInfo.npcList[gameInfo.npcList.index(targetNpc)].isBeingKilled = False
     else:
-        selfNPC.journal.append("visited " + targetNpcName + " on night" + str(gameInfo.currentTurn))
+        selfNPC.journal.append("visited " + targetNpc.name + " on night" + str(gameInfo.currentTurn))
 
 #Villagers do nothing
 def villagerActionFunction(gameInfo, targetNpcName: str, selfNPC: NPC):

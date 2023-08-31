@@ -1,4 +1,4 @@
-from Role import Role
+from main.Role import Role
 
 villager = Role("villager", "commoner", "good")
 seer = Role("seer", "commoner", "good")

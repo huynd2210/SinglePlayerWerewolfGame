@@ -1,20 +1,20 @@
 import random
 
-import PlayerActionList
-import RoleList
-from GameEngine import GameConfig
-from GameEngine.NightInfo import NightInfo
-from GameEngine.GameInfo import GameInfo
-from NPC import NPC
-from NPCActions import RoleActionList
+from main import RoleList
+from main.GameEngine import GameConfig
+from main.GameEngine.NightInfo import NightInfo
+from main.GameEngine.GameInfo import GameInfo
+from main.NPC import NPC
+from main.NPCActions import RoleActionList
 
 
 class Game:
-    def __init__(self, player):
+    def __init__(self, player, isTestGame=True):
         self.gameInfo = self._initGameInfo(player)
         self.nightInfo = self._initNightInfo()
         self.configMap = self._initConfigMap()
-        self.initTestGame()
+        if isTestGame:
+            self.initTestGame()
 
     def _initNightInfo(self):
         return NightInfo()
@@ -42,6 +42,7 @@ class Game:
     def addNPC(self, name, roleName):
         role = RoleList.roleMap[roleName.lower()]
         self.gameInfo.npcList.append(NPC(role, name))
+
 
     def initTestGame(self):
         self.addNPC("Tim", "Villager")
