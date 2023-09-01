@@ -1,8 +1,8 @@
-from src.Role import Role
+from src.Npc.Role import Role
 
 
 class NPC:
-    def __init__(self, role: Role, name: str):
+    def __init__(self, role: Role, name: str, actionFunction):
         self.role = role
         self.name = name
         #Journal is a list that contains information that this npc has learned. For example, the seer can learn other villagers roles and note them here.
@@ -13,7 +13,11 @@ class NPC:
         self.isBeingKilled = False
         self.isAtHome = True
         self.isAllowedToAct = True
+        self.actionFunction = actionFunction
 
     def __repr__(self):
         return self.name + ": " + str(self.role)
+
+    def performAction(self, *args):
+        self.actionFunction(*args)
 

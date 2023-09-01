@@ -1,8 +1,5 @@
-import pytest
-
-from src import RoleList
 from src.GameEngine.Game import Game
-from src.NPCActions import RoleActionList
+from src.NPC import RoleActionList
 from src.Player import Player
 
 

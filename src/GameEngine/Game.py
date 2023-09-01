@@ -1,12 +1,11 @@
 import random
 
-from src import RoleList
 from src.GameEngine import GameConfig
 from src.GameEngine.NightInfo import NightInfo
 from src.GameEngine.GameInfo import GameInfo
 from src.NPC import NPC
-from src.NPCActions import RoleActionList
-
+from src.Npc import RoleList
+from src.Npc import RoleActionList
 
 class Game:
     def __init__(self, player, config=None, isTestGame=False):
@@ -48,7 +47,8 @@ class Game:
 
     def addNPC(self, name, roleName):
         role = RoleList.roleMap[roleName.lower()]
-        self.gameInfo.npcList.append(NPC(role, name))
+        actionFunction = RoleActionList.roleActionMap[roleName.lower()]
+        self.gameInfo.npcList.append(NPC(role, name, actionFunction))
 
     def setupGameWithConfig(self, setupNPCCounts):
         NPCNames = ["Tim", "Tom", "Tip", "Bob", "Ben", "David", "Chad", "Chen", "Michael",
@@ -162,10 +162,10 @@ class Game:
         self.gameInfo.player.takeNightActionDialogue(self.gameInfo)
 
     def npcNightAction(self, npc):
-        targetNpc = self.chooseTargetNpc(npc)
-        RoleActionList.roleActionMap[npc.role.roleName.lower()](self.gameInfo, targetNpc, npc)
+        # targetNpc = self.chooseTargetNpc(npc)
+        RoleActionList.roleActionMap[npc.role.roleName.lower()](self.gameInfo, npc)
 
-    # This function controls the NPC's behavior
+    # This function controls the Npc's behavior
     def updateGameInfo(self):
         for npc in self.gameInfo.npcList:
             if self.gameInfo.currentTurn % self.configMap[npc.role.roleName.lower()]["actFrequency"] == 0:
@@ -179,7 +179,7 @@ class Game:
 
         self.nightInfo.resolveNightConclusion(self.gameInfo)
 
-    # This function allows the NPC to choose a target based on some criteria (todo)
+    # This function allows the Npc to choose a target based on some criteria (todo)
     def chooseTargetNpc(self, originNpc):
         aliveNpc = list(filter(lambda npc: npc.isAlive, self.gameInfo.npcList))
         return random.choice(list(filter(lambda npc: npc != originNpc, aliveNpc)))

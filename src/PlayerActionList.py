@@ -2,7 +2,7 @@ from src.PlayerActions import VisitAction, ExecuteAction, RoleInvestigationActio
 
 visitAction = VisitAction.visitActionWrapper
 executeNPCAction = ExecuteAction.executeNPCActionWrapper
-# investigate role: Investigate a NPC to find out his role. Note to self: this action can be essentially removed by the cleaner-evil role
+# investigate role: Investigate a Npc to find out his role. Note to self: this action can be essentially removed by the cleaner-evil role
 roleInvestigationAction = RoleInvestigationAction.roleInvestigationActionWrapper
-# todo: autopsyAction: Perform autopsy on a dead NPC to find out the cause of death
+# todo: autopsyAction: Perform autopsy on a dead Npc to find out the cause of death
 

@@ -24,7 +24,7 @@ def executeNPCActionWrapper(gameInfo):
 def _executeNPCActionFunction(gameInfo, npcName):
     npcNameList = [npc.name for npc in gameInfo.npcList]
     if npcName not in npcNameList:
-        raise Exception("NPC " + npcName + " not found.")
+        raise Exception("Npc " + npcName + " not found.")
 
     gameInfo.npcList[npcNameList.index(npcName)].isAlive = False
     print(npcName + " was executed.")

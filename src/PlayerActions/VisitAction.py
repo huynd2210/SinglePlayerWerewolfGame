@@ -16,7 +16,7 @@ def visitActionWrapper(gameInfo):
 def _visitActionFunction(gameInfo, npcName):
     aliveNpcNames = [npc.name for npc in gameInfo.npcList if npc.isAlive]
     if npcName not in aliveNpcNames:
-        print("NPC not found.")
+        print("Npc not found.")
         return
 
     print("You visited " + npcName + ".")
