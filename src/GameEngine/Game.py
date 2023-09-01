@@ -174,7 +174,8 @@ class Game:
         if self.gameInfo.currentNightType.lower() == "full moon":
             self.gameInfo.currentNightType = "normal"
 
-        if self.gameInfo.currentNightType.lower() == "normal" and self.gameInfo.currentTurn % GameConfig.fullMoonFrequency == 0:
+        #since updateGameInfo() will update for the next round, therefore we need add one to self.gameInfo.currentTurn
+        if self.gameInfo.currentNightType.lower() == "normal" and (self.gameInfo.currentTurn + 1) % GameConfig.fullMoonFrequency == 0:
             self.gameInfo.currentNightType = "full moon"
 
         self.nightInfo.resolveNightConclusion(self.gameInfo)
