@@ -1,7 +1,6 @@
 import random
 from src.NPC import NPC
-
-
+from src.Npc import Alignment
 
 def doctorPossibleTarget(gameInfo, selfNPC: NPC):
     return [npc for npc in gameInfo.npcList if npc.isAlive and npc != selfNPC]
@@ -23,3 +22,5 @@ def doctorActionFunction(gameInfo, targetNpc: NPC, selfNPC: NPC):
         gameInfo.npcList[gameInfo.npcList.index(targetNpc)].isBeingKilled = False
     else:
         selfNPC.journal.append("visited " + targetNpc.name + " on night " + str(gameInfo.currentTurn))
+
+    selfNPC.isAtHome = False

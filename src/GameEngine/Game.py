@@ -42,6 +42,18 @@ class Game:
             "werewolf": {
                 "actFrequency": GameConfig.werewolfActFrequency,
             },
+            "trapper": {
+                "actFrequency": GameConfig.trapperActFrequency,
+            },
+            "cleaner": {
+                "actFrequency": GameConfig.cleanerActFrequency,
+            },
+            "deceiver": {
+                "actFrequency": GameConfig.deceiverActFrequency,
+            },
+            "serialKiller": {
+                "actFrequency": GameConfig.serialKillerActFrequency,
+            },
 
         }
 
@@ -130,7 +142,6 @@ class Game:
 
             # Player perform day actions
             self.playerDayAction()
-            # End day phase
 
     def _nightPhase(self):
         # First, the npc will act
@@ -167,9 +178,12 @@ class Game:
 
     # This function controls the Npc's behavior
     def updateGameInfo(self):
+        # Update statuses
         for npc in self.gameInfo.npcList:
             if self.gameInfo.currentTurn % self.configMap[npc.role.roleName.lower()]["actFrequency"] == 0:
                 npc.isAllowedToAct = True
+            npc.isBeingTrapped = False
+            npc.isAtHome = True
 
         if self.gameInfo.currentNightType.lower() == "full moon":
             self.gameInfo.currentNightType = "normal"

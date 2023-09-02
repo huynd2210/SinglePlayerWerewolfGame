@@ -9,9 +9,9 @@ def cleanerPossibleTarget(gameInfo):
 def cleanerActionWrapper(gameInfo, selfNPC: NPC):
     possibleTargets = cleanerPossibleTarget(gameInfo)
     chosenTarget = random.choice(list(filter(lambda npc: npc != selfNPC, possibleTargets)))
-    cleanerActionFunction(gameInfo, chosenTarget)
+    cleanerActionFunction(gameInfo, chosenTarget, selfNPC)
 
-def cleanerActionFunction(gameInfo, targetNpc: NPC):
+def cleanerActionFunction(gameInfo, targetNpc: NPC, selfNPC: NPC):
     if targetNpc not in gameInfo.npcList:
         raise Exception(targetNpc.name + " not found.")
 
@@ -22,3 +22,5 @@ def cleanerActionFunction(gameInfo, targetNpc: NPC):
     targetNpc.role.alignment = "Cleaned"
     targetNpc.role.faction = "Cleaned"
     targetNpc.journal.clear()
+
+    selfNPC.isAtHome = False

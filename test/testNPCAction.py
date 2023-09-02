@@ -1,5 +1,5 @@
 from src.GameEngine.Game import Game
-from src.NPC import RoleActionList
+from src.Npc import RoleActionList
 from src.Player import Player
 
 
@@ -13,8 +13,8 @@ def testSeerActionOnVillager():
     game.addNPC(villagerName, "Villager")
     game.addNPC("Ben", "Seer")
     seer = game.gameInfo.npcList[1]
-    villager = game.gameInfo.npcList[0]
-    RoleActionList.roleActionMap[seer.role.roleName.lower()](game.gameInfo, villager, seer)
+    # villager = game.gameInfo.npcList[0]
+    RoleActionList.roleActionMap[seer.role.roleName.lower()](game.gameInfo, seer)
     assert seer.journal[0] == villagerName + " is a villager"
 
 def testDoctorActionJournal():
@@ -23,7 +23,7 @@ def testDoctorActionJournal():
     game.addNPC("doctorNPC", "Doctor")
     villager = game.gameInfo.npcList[0]
     doctor = game.gameInfo.npcList[1]
-    RoleActionList.roleActionMap[doctor.role.roleName.lower()](game.gameInfo, villager, doctor)
+    RoleActionList.roleActionMap[doctor.role.roleName.lower()](game.gameInfo, doctor)
     assert len(doctor.journal) > 0
 
 def testDoctorSaving():

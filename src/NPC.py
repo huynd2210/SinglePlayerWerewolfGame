@@ -13,6 +13,7 @@ class NPC:
         self.isBeingKilled = False
         self.isAtHome = True
         self.isAllowedToAct = True
+        self.isBeingTrapped = False
         self.actionFunction = actionFunction
 
     def __repr__(self):
