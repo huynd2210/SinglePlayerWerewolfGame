@@ -71,6 +71,8 @@ class Game:
                 NPCNames.remove(name)
                 self.addNPC(name, role)
 
+        random.shuffle(self.gameInfo.npcList)
+
     def setupGameRandom(self):
 
         pass
@@ -81,6 +83,7 @@ class Game:
         self.addNPC("Bob", "Villager")
         self.addNPC("Ben", "Seer")
         self.addNPC("Chad", "Werewolf")
+        self.addNPC("Trappy", "Trapper")
 
     def countRoles(self):
         roleCount = {}
