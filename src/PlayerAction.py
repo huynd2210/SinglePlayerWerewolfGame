@@ -5,6 +5,6 @@ class PlayerAction:
         self.isNightAction = isNightAction
 
     def performAction(self, *args):
-        self.actionFunction(*args)
+        return self.actionFunction(*args)
 
 

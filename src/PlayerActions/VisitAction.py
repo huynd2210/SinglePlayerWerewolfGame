@@ -17,10 +17,12 @@ def _visitActionFunction(gameInfo, npcName):
     aliveNpcNames = [npc.name for npc in gameInfo.npcList if npc.isAlive]
     if npcName not in aliveNpcNames:
         print("Npc not found.")
-        return
+        return False
 
     print("You visited " + npcName + ".")
     _resolveVisitAction(gameInfo, npcName)
+
+    return True
 
 def _resolveVisitAction(gameInfo, npcName):
     npcEffect = {}

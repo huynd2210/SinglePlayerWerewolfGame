@@ -2,8 +2,13 @@ def _possibleTargetNames(gameInfo):
     return [npc.name for npc in gameInfo.npcList if not npc.isAlive]
 
 def retrieveJournalActionWrapper(gameInfo):
-    print("Whose journal do you want to retrieve?")
     possibleTargetsNames = _possibleTargetNames(gameInfo)
+    if len(possibleTargetsNames) == 0:
+        print("No possible targets ")
+        return False
+
+    print("Whose journal do you want to retrieve?")
+
     _printTargetNames(possibleTargetsNames)
     targetNameToRetrieve = input()
 
@@ -13,6 +18,7 @@ def retrieveJournalActionWrapper(gameInfo):
         _printTargetNames(possibleTargetsNames)
         targetNameToRetrieve = input()
     _retrieveJournalActionFunction(gameInfo, targetNameToRetrieve)
+    return True
 
 def _printTargetNames(possibleTargetsNames):
     for targetNames in possibleTargetsNames:

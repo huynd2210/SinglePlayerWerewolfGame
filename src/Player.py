@@ -39,7 +39,9 @@ class Player:
 
         for action in possibleDayActions:
             if action.name == actionToTake:
-                action.performAction(gameInfo)
+                isActionSuccessful = action.performAction(gameInfo)
+                if isActionSuccessful == False:
+                    self.takeDayActionDialogue(gameInfo)
 
     def takeNightActionDialogue(self, gameInfo):
         print("What do you want to do tonight? Possible actions are: ")
@@ -63,9 +65,14 @@ class Player:
             if actionToTake.lower() == "nothing":
                 return
 
+
         for action in possibleNightActions:
             if action.name == actionToTake:
-                action.performAction(gameInfo)
+                # action was not successfully performed (i.e no targets)
+                isActionSuccessful = action.performAction(gameInfo)
+                if isActionSuccessful == False:
+                    self.takeNightActionDialogue(gameInfo)
+
 
 
     def printAliveNpcNames(self, aliveNpcNames):

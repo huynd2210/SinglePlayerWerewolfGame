@@ -2,17 +2,23 @@ def _possibleTargetNames(gameInfo):
     return [npc.name for npc in gameInfo.npcList if not npc.isAlive]
 
 def roleInvestigationActionWrapper(gameInfo):
-    print("Who do you want to investigate?")
     possibleTargetsNames = _possibleTargetNames(gameInfo)
+
+    if len(possibleTargetsNames) == 0:
+        print("No possible targets ")
+        return False
+    print("Who do you want to investigate?")
     _printTargetNames(possibleTargetsNames)
     targetNameToInvestigate = input()
 
-    if targetNameToInvestigate not in possibleTargetsNames:
+    while targetNameToInvestigate not in possibleTargetsNames:
         print("Invalid input, try again")
         print("Who do you want to investigate?")
         _printTargetNames(possibleTargetsNames)
         targetNameToInvestigate = input()
+
     _roleInvestigationActionFunction(gameInfo, targetNameToInvestigate)
+    return True
 
 def _printTargetNames(possibleTargetsNames):
     for targetNames in possibleTargetsNames:
