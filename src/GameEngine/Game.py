@@ -68,13 +68,14 @@ class Game:
         NPCNames = ["Tim", "Tom", "Tip", "Bob", "Ben", "David", "Chad", "Chen", "Michael",
                     "James", "John", "Deema", "Robert", "William", "Christ", "Joe", "Dan", "Richard", "Thomas", "Jen"]
         for role, count in setupNPCCounts.items():
-            for i in range(count):
+            for _ in range(count):
                 name = random.choice(NPCNames)
                 NPCNames.remove(name)
                 self.addNPC(name, role)
 
         random.shuffle(self.gameInfo.npcList)
 
+    # Not yet implemented
     def setupGameRandom(self):
 
         pass

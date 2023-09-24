@@ -1,4 +1,3 @@
-# from src import PlayerActionList
 from src import PlayerActionList
 from src.PlayerAction import PlayerAction
 
@@ -14,65 +13,68 @@ class Player:
         self.actions.append(PlayerAction("execute", False, PlayerActionList.executeNPCAction, "Execute an NPC"))
         self.actions.append(PlayerAction("investigate role", False, PlayerActionList.roleInvestigationAction, "Investigate the role of a dead NPC"))
         self.actions.append(PlayerAction("retrieve journal", False, PlayerActionList.retrieveJournalAction, "Retrieve the journal of a dead NPC"))
-        self.actions.append(PlayerAction("suppress", True, PlayerActionList.suppressAction, "Lockdown an NPC, preventing them from performing actions"))
+        self.actions.append(PlayerAction("suppress", False, PlayerActionList.suppressAction, "Lockdown an NPC, preventing them from performing actions"))
 
-    #todo: refactor so that actions can be performed on dead NPCs as well as alive ones, depending on the action
+
     def takeDayActionDialogue(self, gameInfo):
         print("What do you want to do today? Possible actions are: ")
         possibleDayActions = [actions for actions in self.actions if not actions.isNightAction]
-        possibleDayActionsNames = [actions.name for actions in possibleDayActions]
-        for action in possibleDayActions:
-            print("--", action.name, ":", action.description)
 
-        print("-- nothing")
-        actionToTake = input()
-        if actionToTake.lower() == "nothing":
+        for i in range(len(possibleDayActions)):
+            print(i, "--", possibleDayActions[i].name, ":", possibleDayActions[i].description)
+
+        print(len(possibleDayActions) ,"-- nothing")
+
+        action = self._takeActionInput(possibleDayActions)
+        if action == None:
             return
-        while actionToTake not in possibleDayActionsNames:
+        isActionSuccessful = action.performAction(gameInfo)
+        # action was not successfully performed (i.e no targets)
+        if isActionSuccessful == False:
+            self.takeDayActionDialogue(gameInfo)
+
+    def _takeActionInput(self, possibleActions):
+        actionToTake = input()
+        isPlayerChoosingNothing = actionToTake.lower() == "nothing" and not actionToTake.isdigit()
+        if isPlayerChoosingNothing or int(actionToTake) >= len(possibleActions):
+            return
+
+        possibleActionNames = [actions.name for actions in possibleActions]
+
+        while actionToTake not in possibleActionNames and not actionToTake.isdigit():
             print("Invalid input, try again")
-            print("What do you want to do today?")
-            for action in possibleDayActions:
+            print("What do you want to do tonight?")
+            for action in possibleActions:
                 print("--", action.name)
             actionToTake = input()
             if actionToTake.lower() == "nothing":
                 return
 
-        for action in possibleDayActions:
+        if actionToTake.isdigit():
+            return possibleActions[int(actionToTake)]
+
+        for action in possibleActions:
             if action.name == actionToTake:
-                isActionSuccessful = action.performAction(gameInfo)
-                if isActionSuccessful == False:
-                    self.takeDayActionDialogue(gameInfo)
+                return action
 
     def takeNightActionDialogue(self, gameInfo):
         print("What do you want to do tonight? Possible actions are: ")
         possibleNightActions = [actions for actions in self.actions if actions.isNightAction]
-        possibleNightActionsNames = [actions.name for actions in possibleNightActions]
-        for action in possibleNightActions:
-            print("--", action.name, ":", action.description)
 
+        for i in range(len(possibleNightActions)):
+            print(i, "--", possibleNightActions[i].name, ":", possibleNightActions[i].description)
         #Do nothing
-        print("-- nothing")
-        actionToTake = input()
-        if actionToTake.lower() == "nothing":
+        print(len(possibleNightActions) ,"-- nothing")
+
+        action = self._takeActionInput(possibleNightActions)
+
+        if action == None:
             return
 
-        while actionToTake not in possibleNightActionsNames:
-            print("Invalid input, try again")
-            print("What do you want to do tonight?")
-            for action in possibleNightActions:
-                print("--", action.name)
-            actionToTake = input()
-            if actionToTake.lower() == "nothing":
-                return
-
-
-        for action in possibleNightActions:
-            if action.name == actionToTake:
-                # action was not successfully performed (i.e no targets)
-                isActionSuccessful = action.performAction(gameInfo)
-                if isActionSuccessful == False:
-                    self.takeNightActionDialogue(gameInfo)
-
+        isActionSuccessful = action.performAction(gameInfo)
+        # action was not successfully performed (i.e no targets)
+        if isActionSuccessful == False:
+            self.takeNightActionDialogue(gameInfo)
 
 
     def printAliveNpcNames(self, aliveNpcNames):

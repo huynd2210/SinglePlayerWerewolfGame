@@ -1,4 +1,7 @@
 
+
+
+
 def visitActionWrapper(gameInfo):
     print("Who do you want to visit")
     possibleTargetNames = _possibleTargetNames(gameInfo)
@@ -51,22 +54,32 @@ def _resolveVisitAction(gameInfo, npcName):
         return
 
     if npc.isBeingCoveredByDeceiver:
-        print("You think that " + npcName + " is a villager.")
+        print(visitResultVillager(npcName))
         return
 
     npcRoleName = npc.role.roleName
 
     print(npcEffect[npcRoleName](gameInfo, npcName))
 
+
+def visitResultVillager(npcName):
+    return "You think that " + npcName + " is a villager."
+
+def nobodyHomeVisitResult():
+    return "You knocked on the door, but it seems that nobody is at home right now"
+
+def visitResultCriminal(npcName):
+    return npcName + " is highly suspicious, you think that he is potentially a criminal"
+
 def _resolveVisitingWerewolf(gameInfo, npcName):
     if gameInfo.currentNightType == "full moon":
         return npcName + " is not at home. There are traces of wolf fur on the floor. You conclude that he is a werewolf."
     else:
-        return "You think that " + npcName + " is a villager."
+        return visitResultVillager(npcName)
 
 
 def _resolveVisitingVillager(gameInfo, npcName):
-    return "You think that " + npcName + " is a villager."
+    return visitResultVillager(npcName)
 
 
 def _resolveVisitingSeer(gameInfo, npcName):
@@ -83,28 +96,28 @@ def _resolveVisitingDoctor(gameInfo, npcName):
     if gameInfo.npcList[npcNameList.index(npcName)].isAtHome:
         return npcName + " revealed that he is a doctor and he " + str(gameInfo.npcList[npcNameList.index(npcName)].journal)
     else:
-        return "You knocked on the door, but it seems that nobody is at home right now"
+        return nobodyHomeVisitResult()
 
 def _resolveVisitingCleaner(gameInfo, npcName):
     npcNameList = [npc.name for npc in gameInfo.npcList]
     if gameInfo.npcList[npcNameList.index(npcName)].isAtHome:
-        return npcName + " is highly suspicious, you think that he is potentially a criminal"
+        return visitResultCriminal(npcName)
     else:
-        return "You knocked on the door, but it seems that nobody is at home right now"
+        return nobodyHomeVisitResult()
 
 def _resolveVisitingTrapper(gameInfo, npcName):
     npcNameList = [npc.name for npc in gameInfo.npcList]
     if gameInfo.npcList[npcNameList.index(npcName)].isAtHome:
-        return npcName + " is highly suspicious, you think that he is potentially a criminal"
+        return visitResultCriminal(npcName)
     else:
-        return "You knocked on the door, but it seems that nobody is at home right now"
+        return nobodyHomeVisitResult()
 
 def _resolveVisitingDeceiver(gameInfo, npcName):
     npcNameList = [npc.name for npc in gameInfo.npcList]
     if gameInfo.npcList[npcNameList.index(npcName)].isAtHome:
-        return npcName + " is highly suspicious, you think that he is potentially a criminal"
+        return visitResultCriminal(npcName)
     else:
-        return "You knocked on the door, but it seems that nobody is at home right now"
+        return nobodyHomeVisitResult()
 
 def _printTargetNames(possibleTargetNames):
     for targetNames in possibleTargetNames:

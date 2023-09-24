@@ -30,7 +30,6 @@ def deceiverActionFunction(gameInfo, targetNpc: NPC):
     if targetNpc not in gameInfo.npcList:
         raise Exception(targetNpc.name + " not found.")
 
-    Utility.logDebug("Deceiver: " + targetNpc.name + " is being covered by "
-                     + gameInfo.npcList[gameInfo.npcList.index(targetNpc)].name
+    Utility.logDebug("Deceiver: " + " covering " + targetNpc.name
                      + " the " + targetNpc.role.roleName)
     gameInfo.npcList[gameInfo.npcList.index(targetNpc)].isBeingCoveredByDeceiver = True
