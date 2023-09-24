@@ -15,6 +15,9 @@ class NPC:
         self.isAllowedToAct = True
         self.isBeingTrapped = False
         self.actionFunction = actionFunction
+        self.isBeingCoveredByDeceiver = False
+        self.isCleaned = False
+        self.isBeingSuppressed = False
 
     def __repr__(self):
         return self.name + ": " + str(self.role)

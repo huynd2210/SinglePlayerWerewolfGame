@@ -7,6 +7,8 @@ def trapperPossibleTarget(gameInfo):
     return [npc for npc in gameInfo.npcList if npc.isAlive]
 
 def trapperActionWrapper(gameInfo, selfNPC: NPC):
+    if selfNPC.isBeingSuppressed:
+        return
     possibleTargets = trapperPossibleTarget(gameInfo)
     chosenTarget = random.choice(list(filter(lambda npc: npc != selfNPC, possibleTargets)))
     trapperActionFunction(gameInfo, chosenTarget, selfNPC)

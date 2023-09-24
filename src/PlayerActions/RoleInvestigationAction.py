@@ -38,9 +38,10 @@ def _roleInvestigationActionFunction(gameInfo, npcName):
 
 def _resolveRoleInvestigationAction(gameInfo, npcName):
     npcNameList = [npc.name for npc in gameInfo.npcList]
-    npcRole = gameInfo.npcList[npcNameList.index(npcName)].role.roleName
+    npc = gameInfo.npcList[npcNameList.index(npcName)]
+    npcRole = npc.role.roleName
 
-    if npcRole == "Cleaned":
+    if npc.isCleaned:
         print("The scene has been wiped clean, you cannot find any traces of their occupation")
     else:
         print("By investigating, you think that " + npcName + " is a " + npcRole + ".")

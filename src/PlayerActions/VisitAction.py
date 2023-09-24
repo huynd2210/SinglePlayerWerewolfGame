@@ -49,6 +49,11 @@ def _resolveVisitAction(gameInfo, npcName):
     if npc.isBeingTrapped:
         print("You were caught in a trap while visiting", npcName, "you spent the entire night disarming the trap")
         return
+
+    if npc.isBeingCoveredByDeceiver:
+        print("You think that " + npcName + " is a villager.")
+        return
+
     npcRoleName = npc.role.roleName
 
     print(npcEffect[npcRoleName](gameInfo, npcName))

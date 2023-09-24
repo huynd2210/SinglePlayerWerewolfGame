@@ -4,6 +4,8 @@ from src.Npc import Faction
 
 
 def werewolfActionWrapper(gameInfo, selfNPC: NPC):
+    if selfNPC.isBeingSuppressed:
+        return
     possibleTargets = werewolfPossibleTarget(gameInfo, selfNPC)
     chosenTarget = random.choice(list(filter(lambda npc: npc != selfNPC, possibleTargets)))
     werewolfActionFunction(gameInfo, chosenTarget)

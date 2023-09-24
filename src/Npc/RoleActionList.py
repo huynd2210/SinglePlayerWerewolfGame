@@ -1,8 +1,10 @@
 from src.NPC import NPC
 
 from src.Npc.NpcActions.CleanerAction import cleanerActionWrapper
+from src.Npc.NpcActions.DeceiverAction import deceiverActionWrapper
 from src.Npc.NpcActions.DoctorAction import doctorActionWrapper
 from src.Npc.NpcActions.SeerAction import seerActionWrapper
+from src.Npc.NpcActions.SerialKillerAction import serialKillerActionWrapper
 from src.Npc.NpcActions.TrapperAction import trapperActionWrapper
 from src.Npc.NpcActions.WerewolfAction import werewolfActionWrapper
 
@@ -11,13 +13,16 @@ from src.Npc.NpcActions.WerewolfAction import werewolfActionWrapper
 def villagerActionFunction(gameInfo, selfNPC:NPC):
     pass
 
+def cleanedRoleDebug():
+    print("somehow this function gets called")
+
 roleActionMap = {
     "seer": seerActionWrapper,
     "werewolf": werewolfActionWrapper,
     "doctor": doctorActionWrapper,
     "villager": villagerActionFunction,
     "trapper": trapperActionWrapper,
-    # "deceiver": deceiverActionFunction,
+    "deceiver": deceiverActionWrapper,
     "cleaner": cleanerActionWrapper,
-    # "serialKiller": serialKillerActionWrapper,
+    "serial killer": serialKillerActionWrapper,
 }

@@ -1,10 +1,10 @@
 #ActFrequency is how many turn passes before the Npc acts. 1 is every turn
-seerActFrequency = 1
-doctorActFrequency = 1
+seerActFrequency = 2
+doctorActFrequency = 2
 villagerActFrequency = 1
 werewolfActFrequency = 1
 fullMoonFrequency = 2
-trapperActFrequency = 1
-cleanerActFrequency = 1
-deceiverActFrequency = 1
-serialKillerActFrequency = 1
+trapperActFrequency = 2
+cleanerActFrequency = 2
+deceiverActFrequency = 2
+serialKillerActFrequency = 3

@@ -8,6 +8,9 @@ def doctorPossibleTarget(gameInfo, selfNPC: NPC):
 def doctorActionWrapper(gameInfo, selfNPC: NPC):
     possibleTargets = doctorPossibleTarget(gameInfo, selfNPC)
     chosenTarget = random.choice(list(filter(lambda npc: npc != selfNPC, possibleTargets)))
+    if selfNPC.isBeingSuppressed:
+        return
+
     doctorActionFunction(gameInfo, chosenTarget, selfNPC)
 
 # The doctor can save a villager even if the villager is targeted by multiple hostiles

@@ -51,7 +51,7 @@ class Game:
             "deceiver": {
                 "actFrequency": GameConfig.deceiverActFrequency,
             },
-            "serialKiller": {
+            "serial killer": {
                 "actFrequency": GameConfig.serialKillerActFrequency,
             },
 
@@ -181,12 +181,7 @@ class Game:
 
     # This function controls the Npc's behavior
     def updateGameInfo(self):
-        # Update statuses
-        for npc in self.gameInfo.npcList:
-            if self.gameInfo.currentTurn % self.configMap[npc.role.roleName.lower()]["actFrequency"] == 0:
-                npc.isAllowedToAct = True
-            npc.isBeingTrapped = False
-            npc.isAtHome = True
+        self.updateNPCStatuses()
 
         if self.gameInfo.currentNightType.lower() == "full moon":
             self.gameInfo.currentNightType = "normal"
@@ -196,6 +191,22 @@ class Game:
             self.gameInfo.currentNightType = "full moon"
 
         self.nightInfo.resolveNightConclusion(self.gameInfo)
+
+
+    def updateNPCStatuses(self):
+        # Update statuses
+        for npc in self.gameInfo.npcList:
+            npcRole = npc.role.roleName.lower()
+            if self.gameInfo.currentTurn % self.configMap[npcRole]["actFrequency"] == 0:
+                npc.isAllowedToAct = True
+            else:
+                npc.isAllowedToAct = False
+
+            npc.isBeingTrapped = False
+            npc.isAtHome = True
+            npc.isBeingCoveredByDeceiver = False
+            npc.isBeingSuppressed = False
+
 
     # This function allows the Npc to choose a target based on some criteria (todo)
     def chooseTargetNpc(self, originNpc):

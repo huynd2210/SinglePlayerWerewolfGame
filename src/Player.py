@@ -10,11 +10,11 @@ class Player:
         self.inventory = {}
         self.initAction()
     def initAction(self):
-        self.actions.append(PlayerAction("visit", True, PlayerActionList.visitAction))
-        self.actions.append(PlayerAction("execute", False, PlayerActionList.executeNPCAction))
-        self.actions.append(PlayerAction("investigate role", False, PlayerActionList.roleInvestigationAction))
-        self.actions.append(PlayerAction("retrieve journal", False, PlayerActionList.retrieveJournalAction))
-
+        self.actions.append(PlayerAction("visit", True, PlayerActionList.visitAction, "Visit an NPC in order to investigate their role"))
+        self.actions.append(PlayerAction("execute", False, PlayerActionList.executeNPCAction, "Execute an NPC"))
+        self.actions.append(PlayerAction("investigate role", False, PlayerActionList.roleInvestigationAction, "Investigate the role of a dead NPC"))
+        self.actions.append(PlayerAction("retrieve journal", False, PlayerActionList.retrieveJournalAction, "Retrieve the journal of a dead NPC"))
+        self.actions.append(PlayerAction("suppress", True, PlayerActionList.suppressAction, "Lockdown an NPC, preventing them from performing actions"))
 
     #todo: refactor so that actions can be performed on dead NPCs as well as alive ones, depending on the action
     def takeDayActionDialogue(self, gameInfo):
