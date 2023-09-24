@@ -22,7 +22,7 @@ class Player:
         possibleDayActions = [actions for actions in self.actions if not actions.isNightAction]
         possibleDayActionsNames = [actions.name for actions in possibleDayActions]
         for action in possibleDayActions:
-            print("--", action.name)
+            print("--", action.name, ":", action.description)
 
         print("-- nothing")
         actionToTake = input()
@@ -48,7 +48,7 @@ class Player:
         possibleNightActions = [actions for actions in self.actions if actions.isNightAction]
         possibleNightActionsNames = [actions.name for actions in possibleNightActions]
         for action in possibleNightActions:
-            print("--", action.name)
+            print("--", action.name, ":", action.description)
 
         #Do nothing
         print("-- nothing")

@@ -8,10 +8,12 @@ from src.Npc import RoleList
 from src.Npc import RoleActionList
 
 class Game:
-    def __init__(self, player, config=None, isTestGame=False):
+    def __init__(self, player, config=None, isTestGame=False, isDebug=False):
         self.gameInfo = self._initGameInfo(player)
         self.nightInfo = self._initNightInfo()
         self.configMap = self._initConfigMap()
+
+        GameConfig.isDebug = isDebug
 
         if isTestGame == True:
             #If test game is true, then dont setup anything

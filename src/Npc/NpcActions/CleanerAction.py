@@ -1,6 +1,19 @@
 import random
 
+from src.Common import Utility
 from src.NPC import NPC
+
+def isThisNpcAllowedToAct(gameInfo, selfNPC: NPC, possibleTargets):
+
+    if len(possibleTargets) == 0:
+        Utility.logDebug("Cleaner: No possible targets")
+        return False
+
+    if selfNPC.isBeingSuppressed:
+        Utility.logDebug("Cleaner: NPC is being suppressed")
+        return False
+
+    return True
 
 
 def cleanerPossibleTarget(gameInfo):
@@ -8,10 +21,8 @@ def cleanerPossibleTarget(gameInfo):
 
 def cleanerActionWrapper(gameInfo, selfNPC: NPC):
     possibleTargets = cleanerPossibleTarget(gameInfo)
-    if len(possibleTargets) == 0:
-        return
 
-    if selfNPC.isBeingSuppressed:
+    if not isThisNpcAllowedToAct(gameInfo, selfNPC, possibleTargets):
         return
 
     chosenTarget = random.choice(list(filter(lambda npc: npc != selfNPC, possibleTargets)))
@@ -27,6 +38,8 @@ def cleanerActionFunction(gameInfo, targetNpc: NPC, selfNPC: NPC):
     # targetNpc.role.roleName = "Cleaned"
     # targetNpc.role.alignment = "Cleaned"
     # targetNpc.role.faction = "Cleaned"
+
+    Utility.logDebug("Cleaner: targeting " + targetNpc.name + " the " + targetNpc.role.roleName)
 
     targetNpc.isCleaned = True
     targetNpc.journal.clear()

@@ -1,6 +1,20 @@
 import random
+
+from src.Common import Utility
 from src.NPC import NPC
 from src.Npc import Alignment
+
+
+def isThisNpcAllowedToAct(gameInfo, selfNPC: NPC, possibleTargets):
+    if len(possibleTargets) == 0:
+        Utility.logDebug("Doctor: No possible targets")
+        return False
+
+    if selfNPC.isBeingSuppressed:
+        Utility.logDebug("Doctor: NPC is being suppressed")
+        return False
+
+    return True
 
 def doctorPossibleTarget(gameInfo, selfNPC: NPC):
     return [npc for npc in gameInfo.npcList if npc.isAlive and npc != selfNPC]
@@ -8,7 +22,7 @@ def doctorPossibleTarget(gameInfo, selfNPC: NPC):
 def doctorActionWrapper(gameInfo, selfNPC: NPC):
     possibleTargets = doctorPossibleTarget(gameInfo, selfNPC)
     chosenTarget = random.choice(list(filter(lambda npc: npc != selfNPC, possibleTargets)))
-    if selfNPC.isBeingSuppressed:
+    if not isThisNpcAllowedToAct(gameInfo, selfNPC, possibleTargets):
         return
 
     doctorActionFunction(gameInfo, chosenTarget, selfNPC)
@@ -17,6 +31,8 @@ def doctorActionWrapper(gameInfo, selfNPC: NPC):
 def doctorActionFunction(gameInfo, targetNpc: NPC, selfNPC: NPC):
     if targetNpc not in gameInfo.npcList:
         raise Exception(targetNpc.name + " not found.")
+
+    Utility.logDebug("Doctor: Visiting " + targetNpc.name + " the " + targetNpc.role.roleName)
 
     if gameInfo.npcList[gameInfo.npcList.index(targetNpc)].isBeingKilled == True and\
             gameInfo.npcList[gameInfo.npcList.index(targetNpc)].role.alignment == Alignment.good:

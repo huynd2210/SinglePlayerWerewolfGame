@@ -8,3 +8,7 @@ trapperActFrequency = 2
 cleanerActFrequency = 2
 deceiverActFrequency = 2
 serialKillerActFrequency = 3
+
+
+#Config for global debug mode (should it be moved somewhere else?)
+isDebug = False
