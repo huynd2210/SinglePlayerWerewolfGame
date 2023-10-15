@@ -35,8 +35,12 @@ class Player:
 
     def _takeActionInput(self, possibleActions):
         actionToTake = input()
-        isPlayerChoosingNothing = actionToTake.lower() == "nothing" and not actionToTake.isdigit()
-        if isPlayerChoosingNothing or int(actionToTake) >= len(possibleActions):
+        isPlayerChoosingNothing = actionToTake.lower() == "nothing"
+
+        if actionToTake.isdigit():
+            isPlayerChoosingNothing = isPlayerChoosingNothing or int(actionToTake) >= len(possibleActions)
+
+        if isPlayerChoosingNothing:
             return
 
         possibleActionNames = [actions.name for actions in possibleActions]

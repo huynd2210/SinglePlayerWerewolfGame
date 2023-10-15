@@ -1,0 +1,9 @@
+
+lpython:S1542"TRename function "initSampleGame" to match the regular expression ^[a-z_][a-z0-9_]*$.(¶ÿşÏ
+tpython:S117"]Rename this local variable "villagerName" to match the regular expression ^[_a-z][a-z0-9_]*$.(¦ßĞÁ
+vpython:S1542
+"^Rename function "testSeerActionOnVillager" to match the regular expression ^[a-z_][a-z0-9_]*$.(ÏÇÖÔ
+;python:S125"Remove this commented out code.(Ş•úúÿÿÿÿ
+zpython:S1542"]Rename function "testDoctorActionJournal" to match the regular expression ^[a-z_][a-z0-9_]*$.(ÀğÄ¡ùÿÿÿÿ
+Dpython:S1481",Remove the unused local variable "villager".(®Ğ‘Â
+spython:S1542"VRename function "testDoctorSaving" to match the regular expression ^[a-z_][a-z0-9_]*$.(şÒãóûÿÿÿÿ

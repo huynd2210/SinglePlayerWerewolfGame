@@ -1,6 +1,6 @@
 import random
 
-from src.GameEngine import GameConfig
+from src.GameEngine import GameConfig, GameEndChecker
 from src.GameEngine.NightInfo import NightInfo
 from src.GameEngine.GameInfo import GameInfo
 from src.NPC import NPC
@@ -110,18 +110,10 @@ class Game:
 
     # Execute all evil factions to win
     def isPlayerWin(self):
-        for npc in self.gameInfo.npcList:
-            if npc.role.alignment.lower() == "evil" and npc.isAlive:
-                return False
-        print("All evil faction are dead. Player Win")
-        return True
+        return GameEndChecker.isPlayerWin(self)
 
     def isPlayerLose(self):
-        for npc in self.gameInfo.npcList:
-            if npc.role.alignment.lower() == "good" and npc.isAlive:
-                return False
-        print("All good people are dead. Player Lose")
-        return True
+        return GameEndChecker.isPlayerLose(self)
 
     def isGameOver(self):
         return self.isPlayerWin() or self.isPlayerLose()
