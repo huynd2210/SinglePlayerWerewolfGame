@@ -13,6 +13,11 @@ class GameInfo:
         #There are currently 2 types of nights: Normal and Full Moon
         self.currentNightType = "Normal"
 
+    def findNpcByPredicate(self, predicate, **kwargs):
+        for npc in self.npcList:
+            if predicate(npc, kwargs):
+                return npc
+
     def __repr__(self):
         return str(self.player) + "\n" + str(self.npcList)
 

@@ -1,6 +1,7 @@
 import random
 
 from src.Common import Utility
+from src.Common.NpcPredicates import findNpcGuardingNpcByTargetName
 from src.NPC import NPC
 from src.Npc import Faction
 
@@ -27,17 +28,28 @@ def serialKillerActionWrapper(gameInfo, selfNPC: NPC):
         chosenTarget = random.choice(commonerTargets)
     else:
         chosenTarget = random.choice(possibleTargets)
-    serialKillerActionFunction(gameInfo, chosenTarget)
+    serialKillerActionFunction(gameInfo, chosenTarget, selfNPC)
 
 
 def serialKillerPossibleTarget(gameInfo, selfNPC: NPC):
     return [npc for npc in gameInfo.npcList if npc.isAlive and npc != selfNPC and npc.role.faction != Faction.beast]
 
 
-def serialKillerActionFunction(gameInfo, targetNpc: NPC):
+def serialKillerActionFunction(gameInfo, targetNpc: NPC, selfNPC: NPC):
     if targetNpc not in gameInfo.npcList:
         raise Exception(targetNpc.name + " not found.")
 
     Utility.logDebug("Serial Killer: Visiting " + targetNpc.name + " the " + targetNpc.role.roleName)
 
-    gameInfo.npcList[gameInfo.npcList.index(targetNpc)].isBeingKilled = True
+    selfNPC.isAtHome = False
+
+    if targetNpc.isBeingGuarded:
+        resolveVisitingGuardedNPC(gameInfo, selfNPC, targetNpc)
+    else:
+        gameInfo.npcList[gameInfo.npcList.index(targetNpc)].isBeingKilled = True
+
+#kill self and the guard
+def resolveVisitingGuardedNPC(gameInfo, selfNPC: NPC, targetNpc: NPC):
+    targetNpc.isBeingGuarded = False
+    selfNPC.isAlive = False
+    gameInfo.findNpcByPredicate(findNpcGuardingNpcByTargetName, {"targetNpcName": targetNpc.name}).isAlive = False

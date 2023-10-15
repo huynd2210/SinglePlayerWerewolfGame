@@ -1,10 +1,14 @@
 from src.Npc import Alignment, Faction
 from src.Npc.Role import Role
 
+#Reminder: To add a new role, add init the role here and add to roleMap, then create a new file and implement the necessaru function in NpcActions, then finally add the function
+#to the roleActionMap
+
 villager = Role("villager", Faction.commoner, Alignment.good)
 seer = Role("seer", Faction.commoner, Alignment.good)
 werewolf = Role("werewolf", Faction.beast, Alignment.evil, canKill=True)
 doctor = Role("doctor", Faction.commoner, Alignment.good)
+guard = Role("guard", Faction.commoner, Alignment.good, canKill=True)
 trapper = Role("trapper", Faction.criminal, Alignment.evil)
 deceiver = Role("deceiver", Faction.criminal, Alignment.evil)
 cleaner = Role("cleaner", Faction.criminal, Alignment.evil)
@@ -19,4 +23,5 @@ roleMap = {
     "deceiver": deceiver,
     "cleaner": cleaner,
     "serial killer": serialKiller,
+    "guard": guard
 }

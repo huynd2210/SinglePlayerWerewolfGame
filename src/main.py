@@ -10,7 +10,7 @@ if __name__ == '__main__':
         "trapper": 1,
         "cleaner": 1,
         "deceiver": 1,
-        # "serial killer": 1
+        "serial killer": 1
     }
 
     player = Player("Player")

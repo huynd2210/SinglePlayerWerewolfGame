@@ -3,6 +3,7 @@ from src.NPC import NPC
 from src.Npc.NpcActions.CleanerAction import cleanerActionWrapper
 from src.Npc.NpcActions.DeceiverAction import deceiverActionWrapper
 from src.Npc.NpcActions.DoctorAction import doctorActionWrapper
+from src.Npc.NpcActions.GuardAction import guardActionWrapper
 from src.Npc.NpcActions.SeerAction import seerActionWrapper
 from src.Npc.NpcActions.SerialKillerAction import serialKillerActionWrapper
 from src.Npc.NpcActions.TrapperAction import trapperActionWrapper
@@ -25,4 +26,5 @@ roleActionMap = {
     "deceiver": deceiverActionWrapper,
     "cleaner": cleanerActionWrapper,
     "serial killer": serialKillerActionWrapper,
+    "guard": guardActionWrapper,
 }

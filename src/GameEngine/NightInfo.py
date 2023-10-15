@@ -15,6 +15,9 @@ class NightInfo:
                 npc.isAlive = False
                 npc.isBeingKilled = False
 
+            if not npc.isAlive:
+                self.nightCasualties.append(npc)
+
     def reset(self):
         self.nightCasualties = []
 
