@@ -52,4 +52,8 @@ def serialKillerActionFunction(gameInfo, targetNpc: NPC, selfNPC: NPC):
 def resolveVisitingGuardedNPC(gameInfo, selfNPC: NPC, targetNpc: NPC):
     targetNpc.isBeingGuarded = False
     selfNPC.isAlive = False
-    gameInfo.findNpcByPredicate(findNpcGuardingNpcByTargetName, {"targetNpcName": targetNpc.name}).isAlive = False
+    selfNPC.isFreshlyKilled = True
+    guardingNPC = gameInfo.findNpcByPredicate(findNpcGuardingNpcByTargetName, {"targetNpcName": targetNpc.name})
+    guardingNPC.isAlive = False
+    guardingNPC.isFreshlyKilled = True
+    print("A loud bang is heard in the middle of the night.")

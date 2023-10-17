@@ -64,3 +64,9 @@ P
  src/PlayerActions/VisitAction.py,0\3\038ced200ab2efb2029bd0b140ffed0b7f20132e
 =
 src/Player.py,1\8\18e868291eac733612f5a733514561a7b3f790ea
+P
+ src/GameEngine/GameEndChecker.py,8\9\89f96c285d8f2b92ba82d6304441c3184c124838
+Q
+!src/Npc/NpcActions/GuardAction.py,0\c\0c93343659f68c546cd02eb67c7b00073d808601
+K
+src/Common/NpcPredicates.py,8\2\82d4c26677c15b89cce44161cae3bb6cf7f6629e

@@ -201,6 +201,8 @@ class Game:
             npc.isAtHome = True
             npc.isBeingCoveredByDeceiver = False
             npc.isBeingSuppressed = False
+            npc.isBeingGuarded = False
+            npc.isFreshlyKilled = False
 
 
     # This function allows the Npc to choose a target based on some criteria (todo)

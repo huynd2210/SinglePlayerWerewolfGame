@@ -1,7 +1,7 @@
 from src.Npc.Role import Role
 
-
 class NPC:
+    #Note, when adding new flags or statuses, make sure to modify updateNPCStatuses.
     def __init__(self, role: Role, name: str, actionFunction):
         self.role = role
         self.name = name
@@ -20,6 +20,9 @@ class NPC:
         self.isCleaned = False
         self.isBeingSuppressed = False
         self.isBeingGuarded = False
+        #isFreshlyKilled indicates that this npc is dead during the current night
+        self.isFreshlyKilled = False
+        #guarding is for guarding roles, indicate the npcs being guarded by this npc
         self.guarding = []
 
     def __repr__(self):

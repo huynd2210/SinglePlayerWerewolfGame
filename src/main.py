@@ -15,3 +15,8 @@ if __name__ == '__main__':
 
     player = Player("Player")
     Game(player, config=setupNPCCounts, isDebug=False).startGame()
+
+
+
+
+
