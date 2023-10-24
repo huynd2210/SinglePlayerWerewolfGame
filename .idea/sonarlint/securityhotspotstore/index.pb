@@ -70,3 +70,7 @@ Q
 !src/Npc/NpcActions/GuardAction.py,0\c\0c93343659f68c546cd02eb67c7b00073d808601
 K
 src/Common/NpcPredicates.py,8\2\82d4c26677c15b89cce44161cae3bb6cf7f6629e
+T
+$src/Npc/NpcActions/AmbusherAction.py,3\5\358d916ea1d3e8a230a629ef730616f64e89cbb2
+J
+src/GameWiki/GameRules.txt,8\3\839d1b20458d33ab851cafec3c19918dfa6ea42b

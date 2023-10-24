@@ -1,25 +1,24 @@
-from src.GameEngine.Game import Game
 
 
-def checkAllEvilFactionDead(game: Game) -> bool:
+def checkAllEvilFactionDead(game) -> bool:
     for npc in game.gameInfo.npcList:
         if npc.role.alignment.lower() == "evil" and npc.isAlive:
             return False
     return True
 
-def checkAllEvilKillerDead(game: Game) -> bool:
+def checkAllEvilKillerDead(game) -> bool:
     for npc in game.gameInfo.npcList:
         if npc.role.alignment.lower() == "evil" and npc.role.canKill and npc.isAlive:
             return False
     return True
 
-def checkAllGoodFactionDead(game: Game) -> bool:
+def checkAllGoodFactionDead(game) -> bool:
     for npc in game.gameInfo.npcList:
         if npc.role.alignment.lower() == "good" and npc.isAlive:
             return False
     return True
 
-def isPlayerWin(game: Game) -> bool:
+def isPlayerWin(game) -> bool:
     isAllEvilFactionDead = checkAllEvilFactionDead(game)
     isAllEvilKillerDead = checkAllEvilKillerDead(game)
     if isAllEvilFactionDead:
@@ -31,7 +30,7 @@ def isPlayerWin(game: Game) -> bool:
         return True
     return False
 
-def isPlayerLose(game: Game) -> bool:
+def isPlayerLose(game) -> bool:
     isAllGoodFactionDead = checkAllGoodFactionDead(game)
     if isAllGoodFactionDead:
         print("All good people are dead. Player Lose")

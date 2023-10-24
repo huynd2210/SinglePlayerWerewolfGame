@@ -1,3 +1,4 @@
 
 Tpython:S1172"0Remove the unused function parameter "gameInfo".(Ğ­å¿úÿÿÿÿ8Û¤³1
 \python:S112#">Replace this generic exception class with a more specific one.(ö•‡Œ8Û¤³1
+rpython:S930)"UAdd 1 missing arguments; 'resolveVisitingAmbushedNPC' expects 2 positional arguments.(å¹ìZ8’ì˜¶1

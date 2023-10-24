@@ -29,5 +29,5 @@ roleActionMap = {
     "serial killer": serialKillerActionWrapper,
     "guard": guardActionWrapper,
     "ambusher": ambusherActionWrapper,
-    "terrorist": terroristActionWrapper,
+    # "terrorist": terroristActionWrapper,
 }
