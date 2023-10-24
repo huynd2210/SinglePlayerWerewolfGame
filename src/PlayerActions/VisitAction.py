@@ -1,7 +1,3 @@
-
-
-
-
 def visitActionWrapper(gameInfo):
     print("Who do you want to visit")
     possibleTargetNames = _possibleTargetNames(gameInfo)

@@ -11,7 +11,6 @@ class NPC:
         self.isAlive = True
         self.actionFunction = actionFunction
 
-
         #Flag to indicate that this npc is being killed. If this npc is not saved by the end of the night, then he will die.
         self.isBeingKilled = False
         self.isAtHome = True
