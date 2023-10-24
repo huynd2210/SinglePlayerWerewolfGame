@@ -48,6 +48,7 @@ def serialKillerActionFunction(gameInfo, targetNpc: NPC, selfNPC: NPC):
     else:
         gameInfo.npcList[gameInfo.npcList.index(targetNpc)].isBeingKilled = True
 
+
 #kill self and the guard
 def resolveVisitingGuardedNPC(gameInfo, selfNPC: NPC, targetNpc: NPC):
     targetNpc.isBeingGuarded = False

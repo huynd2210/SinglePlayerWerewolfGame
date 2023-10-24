@@ -56,17 +56,28 @@ class Game:
             "serial killer": {
                 "actFrequency": GameConfig.serialKillerActFrequency,
             },
-
+            "guard": {
+                "actFrequency": GameConfig.guardActFrequency,
+            },
+            "ambusher": {
+                "actFrequency": GameConfig.ambusherActFrequency,
+            },
+            "terrorist": {
+                "actFrequency": GameConfig.terroristActFrequency,
+            }
         }
 
     def addNPC(self, name, roleName):
         role = RoleList.roleMap[roleName.lower()]
         actionFunction = RoleActionList.roleActionMap[roleName.lower()]
-        self.gameInfo.npcList.append(NPC(role, name, actionFunction))
+        self.gameInfo.npcList.append(NPC(role, name, actionFunction=actionFunction))
 
     def setupGameWithConfig(self, setupNPCCounts):
         NPCNames = ["Tim", "Tom", "Tip", "Bob", "Ben", "David", "Chad", "Chen", "Michael",
-                    "James", "John", "Deema", "Robert", "William", "Christ", "Joe", "Dan", "Richard", "Thomas", "Jen"]
+                    "James", "John", "Deema", "Robert", "William", "Christ", "Joe", "Dan", "Richard", "Thomas", "Jen",
+                    "Jenny", "Sarah", "Mike", "Lisa", "Alex", "Chloe", "Dave", "Emily", "Sam", "Lily", "Tom", "Jessica",
+                    "Ryan", "Megan", "Andy", "Grace", "Jake", "Liam", "Emma", "Olivia", "Ava", "Isabella", "Sophia",
+                    ]
         for role, count in setupNPCCounts.items():
             for _ in range(count):
                 name = random.choice(NPCNames)
@@ -77,7 +88,6 @@ class Game:
 
     # Not yet implemented
     def setupGameRandom(self):
-
         pass
 
     def initTestGame(self):
@@ -148,13 +158,18 @@ class Game:
         elif self.gameInfo.currentNightType.lower() == 'full moon':
             print("Tonight is full moon")
 
-        for npc in self.gameInfo.npcList:
-            if npc.isAlive and npc.isAllowedToAct:
-                self.npcNightAction(npc)
+        self.resolveNPCNightActions()
 
         # Then the player will act
         self.playerNightAction()
         self.updateGameInfo()
+
+    def resolveNPCNightActions(self):
+        npcsThatWillAct = []
+        for npc in self.gameInfo.npcList:
+            if npc.isAlive and npc.isAllowedToAct:
+                # self.npcNightAction(npc)
+                npcsThatWillAct.append(npc)
 
     def announceNightCasualties(self):
         print(str(len(self.nightInfo.nightCasualties)) + " people died last night.")

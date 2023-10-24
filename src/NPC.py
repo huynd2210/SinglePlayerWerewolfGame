@@ -11,6 +11,7 @@ class NPC:
         self.isAlive = True
         self.actionFunction = actionFunction
 
+
         #Flag to indicate that this npc is being killed. If this npc is not saved by the end of the night, then he will die.
         self.isBeingKilled = False
         self.isAtHome = True
@@ -20,10 +21,14 @@ class NPC:
         self.isCleaned = False
         self.isBeingSuppressed = False
         self.isBeingGuarded = False
-        #isFreshlyKilled indicates that this npc is dead during the current night
+        #isFreshlyKilled indicates that this npc is dead during the current night due to other circumstances rather than targeted by killers
         self.isFreshlyKilled = False
         #guarding is for guarding roles, indicate the npcs being guarded by this npc
         self.guarding = []
+        #flag for ambusher action
+        self.isBeingAmbushed = False
+        #flag for terrorist action
+        self.isBeingBombed = False
 
     def __repr__(self):
         return self.name + ": " + str(self.role)

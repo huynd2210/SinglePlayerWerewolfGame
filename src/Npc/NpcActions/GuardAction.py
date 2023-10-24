@@ -35,5 +35,16 @@ def guardActionFunction(gameInfo, targetNpc: NPC, selfNPC: NPC):
         raise Exception(targetNpc.name + " not found.")
 
     Utility.logDebug("Guard: Visiting " + targetNpc.name + " the " + targetNpc.role.roleName)
+
+    if targetNpc.isBeingAmbushed:
+        selfNPC.journal.append("visited " + targetNpc.name + " on night " + str(gameInfo.currentTurn))
+        resolveVisitingAmbushedNPC(targetNpc)
+        return
+
     targetNpc.isBeingGuarded = True
     selfNPC.guarding.append(targetNpc.name)
+    selfNPC.journal.append("visited " + targetNpc.name + " on night " + str(gameInfo.currentTurn))
+
+def resolveVisitingAmbushedNPC(targetNPC: NPC, selfNPC: NPC):
+    selfNPC.isFreshlyKilled = True
+    targetNPC.isBeingAmbushed = False

@@ -33,6 +33,12 @@ def doctorActionFunction(gameInfo, targetNpc: NPC, selfNPC: NPC):
         raise Exception(targetNpc.name + " not found.")
 
     Utility.logDebug("Doctor: Visiting " + targetNpc.name + " the " + targetNpc.role.roleName)
+    selfNPC.isAtHome = False
+
+    if targetNpc.isBeingAmbushed:
+        selfNPC.journal.append("visited " + targetNpc.name + " on night " + str(gameInfo.currentTurn))
+        resolveVisitingAmbushedNPC(targetNpc)
+        return
 
     if gameInfo.npcList[gameInfo.npcList.index(targetNpc)].isBeingKilled == True and\
             gameInfo.npcList[gameInfo.npcList.index(targetNpc)].role.alignment == Alignment.good:
@@ -42,4 +48,7 @@ def doctorActionFunction(gameInfo, targetNpc: NPC, selfNPC: NPC):
     else:
         selfNPC.journal.append("visited " + targetNpc.name + " on night " + str(gameInfo.currentTurn))
 
-    selfNPC.isAtHome = False
+
+def resolveVisitingAmbushedNPC(targetNPC: NPC, selfNPC: NPC):
+    selfNPC.isFreshlyKilled = True
+    targetNPC.isBeingAmbushed = False

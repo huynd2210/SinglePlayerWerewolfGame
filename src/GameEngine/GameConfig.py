@@ -8,6 +8,9 @@ trapperActFrequency = 2
 cleanerActFrequency = 2
 deceiverActFrequency = 2
 serialKillerActFrequency = 3
+guardActFrequency = 2
+ambusherActFrequency = 2
+terroristActFrequency = 2
 
 
 #Config for global debug mode (should it be moved somewhere else?)

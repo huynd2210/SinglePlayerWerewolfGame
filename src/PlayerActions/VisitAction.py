@@ -44,6 +44,14 @@ def _resolveVisitAction(gameInfo, npcName):
 
     npcEffect["deceiver"] = _resolveVisitingDeceiver
 
+    npcEffect["serial killer"] = _resolveVisitingSerialKiller
+
+    npcEffect['guard'] = _resolveVisitingGuard
+
+    npcEffect['ambusher'] = _resolveVisitingAmbusher
+
+    npcEffect['terrorist'] = _resolveVisitingTerrorist
+
     npcNameList = [npc.name for npc in gameInfo.npcList]
     npc = gameInfo.npcList[npcNameList.index(npcName)]
 
@@ -71,6 +79,13 @@ def nobodyHomeVisitResult():
 def visitResultCriminal(npcName):
     return npcName + " is highly suspicious, you think that he is potentially a criminal"
 
+def visitingCriminalFaction(gameInfo, npcName):
+    npcNameList = [npc.name for npc in gameInfo.npcList]
+    if gameInfo.npcList[npcNameList.index(npcName)].isAtHome:
+        return visitResultCriminal(npcName)
+    else:
+        return nobodyHomeVisitResult()
+
 def _resolveVisitingWerewolf(gameInfo, npcName):
     if gameInfo.currentNightType == "full moon":
         return npcName + " is not at home. There are traces of wolf fur on the floor. You conclude that he is a werewolf."
@@ -83,13 +98,8 @@ def _resolveVisitingVillager(gameInfo, npcName):
 
 
 def _resolveVisitingSeer(gameInfo, npcName):
-    # return npcName + \
-    #     " revealed that he is a seer, and he has learned that " + \
-    #     str(gameInfo.npcList[npcName].journal[0]) + \
-    #     " is a " + gameInfo.npcList[npcName].journal[1] + "."
     npcNameList = [npc.name for npc in gameInfo.npcList]
     return npcName + " revealed that he is a seer, and he has learned that " + str(gameInfo.npcList[npcNameList.index(npcName)].journal)
-
 
 def _resolveVisitingDoctor(gameInfo, npcName):
     npcNameList = [npc.name for npc in gameInfo.npcList]
@@ -98,26 +108,31 @@ def _resolveVisitingDoctor(gameInfo, npcName):
     else:
         return nobodyHomeVisitResult()
 
-def _resolveVisitingCleaner(gameInfo, npcName):
+def _resolveVisitingGuard(gameInfo, npcName):
     npcNameList = [npc.name for npc in gameInfo.npcList]
     if gameInfo.npcList[npcNameList.index(npcName)].isAtHome:
-        return visitResultCriminal(npcName)
+        return npcName + " revealed that he is a guard and he " + str(
+            gameInfo.npcList[npcNameList.index(npcName)].journal)
     else:
         return nobodyHomeVisitResult()
+
+def _resolveVisitingCleaner(gameInfo, npcName):
+    visitingCriminalFaction(gameInfo, npcName)
 
 def _resolveVisitingTrapper(gameInfo, npcName):
-    npcNameList = [npc.name for npc in gameInfo.npcList]
-    if gameInfo.npcList[npcNameList.index(npcName)].isAtHome:
-        return visitResultCriminal(npcName)
-    else:
-        return nobodyHomeVisitResult()
+    visitingCriminalFaction(gameInfo, npcName)
 
 def _resolveVisitingDeceiver(gameInfo, npcName):
-    npcNameList = [npc.name for npc in gameInfo.npcList]
-    if gameInfo.npcList[npcNameList.index(npcName)].isAtHome:
-        return visitResultCriminal(npcName)
-    else:
-        return nobodyHomeVisitResult()
+    visitingCriminalFaction(gameInfo, npcName)
+
+def _resolveVisitingSerialKiller(gameInfo, npcName):
+    visitingCriminalFaction(gameInfo, npcName)
+
+def _resolveVisitingAmbusher(gameInfo, npcName):
+    visitingCriminalFaction(gameInfo, npcName)
+
+def _resolveVisitingTerrorist(gameInfo, npcName):
+    visitingCriminalFaction(gameInfo, npcName)
 
 def _printTargetNames(possibleTargetNames):
     for targetNames in possibleTargetNames:

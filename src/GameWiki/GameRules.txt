@@ -1,0 +1,27 @@
+Game Rules:
+    - The objective of the game is to find and execute all evil NPCs capable of removing good NPCs through killing, converting...etc
+    - The player wins when all evil NPCs capable of removing good NPCs through killing, converting die.
+    - The player loses when all good NPCs die or an evil faction achieves their win condition
+
+    - The game is split into 2 phases, day and night phases
+        + During the day, dead NPCs from the last night is announced. Their roles, journals and other information are not disclosed.
+        + Player can perform actions during the day, including performing execution
+        + During the night, the player as well as NPCs take their actions.
+        + The NPCs perform their actions first, then the player will take their actions.
+        + Good NPCs record their action in their journals, while evil NPCs tend not to do so.
+
+    - NPC actions effect and rules:
+        + Villagers do absolutely nothing
+        + Seers can use their spiritual ability to determine the roles of other npcs with absolute truth. I.e, the result cannot be changed by deceivers, ...etc
+        + Werewolves can turn upon a full moon night, and can choose to kill any npcs including those from the other evil factions.
+        + Serial killers can kill regardless of the night type, but will not choose werewolves as target.
+        + Cleaners and remove the roles of a dead NPCs as well as their journal. Thereby obscuring information.
+        + Trappers lay traps at a random NPC house, if the player visit the trapped NPCs, they will not be able to gain any result of their investigation.
+        + Guards can choose to guard a NPC house, if the killing roles (serial killers) targets the guarded NPC, both the guard and the killer role will die.
+        + Ambusher can choose an NPC house to setup and ambush, when other NPCs choose
+
+    - Order of action for each role:
+        + Ambusher -> Guard -> Serial Killer/Werewolves -> Doctor (Ambusher action is performed first)
+
+    - The following roles does not matter which actions is performed first as they dont influence the outcomes of subsequent actions
+        + Seer, Deceiver, Trapper, Terrorists, Cleaner
