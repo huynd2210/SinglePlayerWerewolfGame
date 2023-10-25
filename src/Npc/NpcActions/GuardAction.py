@@ -41,7 +41,7 @@ def guardActionFunction(gameInfo, targetNpc: NPC, selfNPC: NPC):
         resolveVisitingAmbushedNPC(targetNpc)
         return
 
-    targetNpc.isBeingGuarded = True
+    targetNpc.isBeingGuarded = True #check this
     selfNPC.guarding.append(targetNpc.name)
     selfNPC.journal.append("visited " + targetNpc.name + " on night " + str(gameInfo.currentTurn))
 

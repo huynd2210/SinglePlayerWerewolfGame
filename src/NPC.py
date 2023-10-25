@@ -8,7 +8,7 @@ class NPC:
         #Journal is a list that contains information that this npc has learned. For example, the seer can learn other villagers roles and note them here.
         self.journal = []
         self.statuses = []
-        self.isAlive = True
+        self.isAlive = True # Set isAlive =  false in
         self.actionFunction = actionFunction
 
 

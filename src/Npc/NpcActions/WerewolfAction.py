@@ -40,3 +40,4 @@ def werewolfActionFunction(gameInfo, targetNpc: NPC):
     Utility.logDebug("Werewolf: Visiting " + targetNpc.name + " the " + targetNpc.role.roleName)
 
     gameInfo.npcList[gameInfo.npcList.index(targetNpc)].isBeingKilled = True
+    #targetNpc.isBeingKilled = True
