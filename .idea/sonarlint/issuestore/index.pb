@@ -1,8 +1,6 @@
 
 E
 test/testNPCAction.py,7\1\717d8316b3ebbc5d123d5885c472105a03dba9af
-H
-test/testPlayerAction.py,2\f\2f3ffb65512adf892baea23571c49112c64ae7d1
 @
 test/testGame.py,5\e\5eb1637e007d7bea0b2728681567dc4d1112656b
 F
@@ -74,3 +72,7 @@ T
 $src/Npc/NpcActions/AmbusherAction.py,3\5\358d916ea1d3e8a230a629ef730616f64e89cbb2
 J
 src/GameWiki/GameRules.txt,8\3\839d1b20458d33ab851cafec3c19918dfa6ea42b
+C
+test/testSeerNPC.py,7\c\7cca1f5f06f4b6abb9996d833157cc1c41b83ab9
+M
+test/testPlayerVisitAction.py,2\4\24a6cb3d6a86148476bb54bfcfbea621bbf65820
