@@ -13,10 +13,20 @@ class GameInfo:
         #There are currently 2 types of nights: Normal and Full Moon
         self.currentNightType = "Normal"
 
+    #refactor: remove this, replace with a class that has a list of util related functions
     def findNpcByPredicate(self, predicate, **kwargs):
         for npc in self.npcList:
             if predicate(npc, kwargs):
                 return npc
+        return None
+
+    def findNpcByName(self, targetNpcName):
+        npc = [npc for npc in self.npcList if npc.name == targetNpcName]
+
+        if len(npc) > 1:
+            raise Exception("There is more than one NPC with the name " + targetNpcName)
+
+        return npc[0] if len(npc) > 0 else []
 
     def __repr__(self):
         return str(self.player) + "\n" + str(self.npcList)
