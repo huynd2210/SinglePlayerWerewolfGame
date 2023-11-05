@@ -19,8 +19,8 @@ def _visitActionFunction(gameInfo, npcName):
         return False
 
     print("You visited " + npcName + ".")
-    _resolveVisitAction(gameInfo, npcName)
-
+    resultingMessage = _resolveVisitAction(gameInfo, npcName)
+    print(resultingMessage)
     return True
 
 def _resolveVisitAction(gameInfo, npcName):
@@ -54,16 +54,15 @@ def _resolveVisitAction(gameInfo, npcName):
 
     #resolving traps
     if npc.isBeingTrapped:
-        print("You were caught in a trap while visiting", npcName, "you spent the entire night disarming the trap")
-        return
+        caughtInTrapMessage = "You were caught in a trap while visiting", npcName, "you spent the entire night disarming the trap"
+        return caughtInTrapMessage
 
     if npc.isBeingCoveredByDeceiver:
-        print(visitResultVillager(npcName))
-        return
+        return visitResultVillager(npcName)
 
     npcRoleName = npc.role.roleName
 
-    print(npcEffect[npcRoleName](gameInfo, npcName))
+    return npcEffect[npcRoleName](gameInfo, npcName)
 
 
 def visitResultVillager(npcName):
