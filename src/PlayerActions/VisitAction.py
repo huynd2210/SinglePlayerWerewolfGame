@@ -112,22 +112,22 @@ def _resolveVisitingGuard(gameInfo, npcName):
         return nobodyHomeVisitResult()
 
 def _resolveVisitingCleaner(gameInfo, npcName):
-    visitingCriminalFaction(gameInfo, npcName)
+    return visitingCriminalFaction(gameInfo, npcName)
 
 def _resolveVisitingTrapper(gameInfo, npcName):
-    visitingCriminalFaction(gameInfo, npcName)
+    return visitingCriminalFaction(gameInfo, npcName)
 
 def _resolveVisitingDeceiver(gameInfo, npcName):
-    visitingCriminalFaction(gameInfo, npcName)
+    return visitingCriminalFaction(gameInfo, npcName)
 
 def _resolveVisitingSerialKiller(gameInfo, npcName):
-    visitingCriminalFaction(gameInfo, npcName)
+    return visitingCriminalFaction(gameInfo, npcName)
 
 def _resolveVisitingAmbusher(gameInfo, npcName):
-    visitingCriminalFaction(gameInfo, npcName)
+    return visitingCriminalFaction(gameInfo, npcName)
 
 def _resolveVisitingTerrorist(gameInfo, npcName):
-    visitingCriminalFaction(gameInfo, npcName)
+    return visitingCriminalFaction(gameInfo, npcName)
 
 def _printTargetNames(possibleTargetNames):
     for targetNames in possibleTargetNames:

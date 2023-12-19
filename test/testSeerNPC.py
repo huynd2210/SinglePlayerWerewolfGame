@@ -21,3 +21,15 @@ def testSeerActionOnVillager():
 def testSeerActionWerewolf():
     pass
 
+
+class A:
+    def __init__(self):
+        classB = B()
+
+
+        if something is True:
+            classB.doStuff
+
+class B:
+    def __init__(self):
+        pass
