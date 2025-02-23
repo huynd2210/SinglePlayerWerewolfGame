@@ -1,5 +1,5 @@
-from GameEngine.Game import Game
-from Player import Player
+from src.GameEngine.Game import Game
+from src.Player import Player
 
 if __name__ == '__main__':
     setupNPCCounts = {

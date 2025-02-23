@@ -1,11 +1,11 @@
 import random
 
 from src.GameEngine import GameConfig, GameEndChecker
-from src.GameEngine.NightInfo import NightInfo
 from src.GameEngine.GameInfo import GameInfo
+from src.GameEngine.NightInfo import NightInfo
 from src.NPC import NPC
-from src.Npc import RoleList
-from src.Npc import RoleActionList
+from src.Npc import RoleList, RoleActionList
+
 
 class Game:
     def __init__(self, player, config=None, isTestGame=False, isDebug=False):
