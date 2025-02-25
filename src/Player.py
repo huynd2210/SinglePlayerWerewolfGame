@@ -8,6 +8,13 @@ class Player:
         self.actions = []
         self.inventory = {}
         self.initAction()
+
+
+    def findActionByName(self, actionName) -> PlayerAction:
+        for action in self.actions:
+            if action.name == actionName:
+                return action
+        return None
     def initAction(self):
         self.actions.append(PlayerAction("visit", True, PlayerActionList.visitAction, "Visit an NPC in order to investigate their role"))
         self.actions.append(PlayerAction("execute", False, PlayerActionList.executeNPCAction, "Execute an NPC"))

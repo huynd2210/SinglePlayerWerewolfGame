@@ -1,8 +1,6 @@
 
 E
 test/testNPCAction.py,7\1\717d8316b3ebbc5d123d5885c472105a03dba9af
-H
-test/testPlayerAction.py,2\f\2f3ffb65512adf892baea23571c49112c64ae7d1
 @
 test/testGame.py,5\e\5eb1637e007d7bea0b2728681567dc4d1112656b
 R
@@ -74,3 +72,25 @@ T
 $src/Npc/NpcActions/AmbusherAction.py,3\5\358d916ea1d3e8a230a629ef730616f64e89cbb2
 J
 src/GameWiki/GameRules.txt,8\3\839d1b20458d33ab851cafec3c19918dfa6ea42b
+C
+test/testSeerNPC.py,7\c\7cca1f5f06f4b6abb9996d833157cc1c41b83ab9
+]
+-test/PlayerActions/testPlayerVisitVillager.py,0\e\0e0bbe8e1b64aa98aac89c73f882013df7853056
+]
+-test/PlayerActions/testPlayerVisitWerewolf.py,1\5\152799e2d803cc17e68ba3fa60bef90462e9b905
+Y
+)test/PlayerActions/testPlayerVisitSeer.py,f\9\f93858022059987d8fce32cfc3a221c0f3da0d67
+[
++test/PlayerActions/testPlayerVisitDoctor.py,2\d\2d3315842de8bbb9f4720abb6ce89510f7667ab5
+\
+,test/PlayerActions/testPlayerVisitCleaner.py,6\4\64a70036a0657e086d8a43df77239ba43dad0ce5
+]
+-test/PlayerActions/testPlayerVisitDeceiver.py,8\8\88cb0d64c01ce31e8d61c46cd87a927d67e6291e
+\
+,test/PlayerActions/testPlayerVisitTrapper.py,e\9\e963a26d0355e1d1f4aaeba4d174153a9356c215
+a
+1test/PlayerActions/testPlayerVisitSerialKiller.py,3\0\3008dd1eadc1e1ad22c9d786bc93c80ef4a7e07c
+]
+-test/PlayerActions/testPlayerVisitAmbusher.py,e\1\e1b7308b8c0e012832b0f09244f4db8830187f5f
+^
+.test/PlayerActions/testPlayerVisitTerrorist.py,3\c\3c294242160b34dce71800c766739cb9bfe0b3e6

@@ -35,10 +35,6 @@ def cleanerActionFunction(gameInfo, targetNpc: NPC, selfNPC: NPC):
     if targetNpc.isAlive:
         raise Exception("Cannot cleanup " + targetNpc.name + " as they are still alive")
 
-    # targetNpc.role.roleName = "Cleaned"
-    # targetNpc.role.alignment = "Cleaned"
-    # targetNpc.role.faction = "Cleaned"
-
     Utility.logDebug("Cleaner: targeting " + targetNpc.name + " the " + targetNpc.role.roleName)
 
     targetNpc.isCleaned = True
