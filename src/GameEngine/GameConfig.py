@@ -14,4 +14,4 @@ terroristActFrequency = 2
 
 
 #Config for global debug mode (should it be moved somewhere else?)
-isDebug = False
+isDebug = True

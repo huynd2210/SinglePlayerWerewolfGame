@@ -170,6 +170,11 @@ class Game:
             if npc.isAlive and npc.isAllowedToAct:
                 # self.npcNightAction(npc)
                 npcsThatWillAct.append(npc)
+        npcsThatWillAct.sort(
+            key=lambda npc: npc.role.actionPriority if npc.role.actionPriority is not None else float('inf'))
+
+        for npc in npcsThatWillAct:
+            self.npcNightAction(npc)
 
     def announceNightCasualties(self):
         print(str(len(self.nightInfo.nightCasualties)) + " people died last night.")
